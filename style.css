@@ -1,0 +1,102 @@
+/* ---------- GENERAL ---------- */
+* {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #c0c0c0;
+  font-family: "Varela Round", sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  min-block-size: 100vh;
+  padding: 5vmin;
+}
+
+h2 {
+  font-size: 1.75rem;
+}
+
+input {
+  background-image: none;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  transition: all 0.3s;
+}
+
+/* ---------- ALIGN ---------- */
+.body {
+  display: grid;
+  place-items: center;
+}
+
+/* ---------- BUTTON ---------- */
+
+.button {
+  background-color: #33cc77;
+  color: #fff;
+  padding: 0.25em 1.5em;
+}
+
+.button:hover {
+  background-color: #28ad63;
+}
+
+.register {
+  text-decoration: none;
+  color: #777;
+}
+
+/* ---------- LOGIN ---------- */
+.login {
+  width: 400px;
+}
+
+.login_header {
+  background-color: #f95252;
+  border-top-left-radius: 1.25em;
+  border-top-right-radius: 1.25em;
+  color: #fff;
+  padding: 1.25em 1.625em;
+}
+
+.login_header :first-child {
+  margin-top: 0;
+}
+
+.login_header :last-child {
+  margin-bottom: 0;
+}
+
+.login_form {
+  background-color: #fff;
+  border-bottom-left-radius: 1.25em;
+  border-bottom-right-radius: 1.25em;
+  color: #777;
+  display: grid;
+  gap: 0.875em;
+  padding: 1.25em 1.625em;
+}
+
+.login input {
+  border-radius: 0.1875em;
+}
+
+.login input[type="email"],
+.login input[type="password"],
+.login input[type="text"] {
+  background-color: #eee;
+  color: #777;
+  padding: 0.25em 0.625em;
+  width: 100%;
+}
+
+.login input[type="submit"] {
+  display: block;
+  margin: 0 auto;
+}
