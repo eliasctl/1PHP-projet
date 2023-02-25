@@ -3,7 +3,7 @@
 	session_start();
 	// Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
 	if(!isset($_SESSION["username"])){
-		header("Location: login.php");
+		header("Location: connexion.php");
 		exit(); 
 	}
 ?>
@@ -16,7 +16,7 @@
 		<div class="sucess">
 		<h1>Bienvenue <?php echo $_SESSION['username']; ?>!</h1>
 		<p>C'est votre espace utilisateur.</p>
-		<a href="logout.php">Déconnexion</a>
+		<a href="deconnection.php">Déconnexion</a>
 		</div>
 	</body>
 </html>

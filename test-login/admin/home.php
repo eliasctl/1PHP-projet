@@ -4,6 +4,7 @@
 	// Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
 	if(!isset($_SESSION["username"])){
 		header("Location: login.php");
+		// ajouter une vérification pour savoir si l'utilisateur est un admin ou un utilisateur ⚠️
 		exit(); 
 	}
 ?>
@@ -19,7 +20,7 @@
 		<a href="add_user.php">Add user</a> | 
 		<a href="#">Update user</a> | 
 		<a href="#">Delete user</a> | 
-		<a href="../logout.php">Déconnexion</a>
+		<a href="../deconnection.php">Déconnexion</a>
 		</ul>
 		</div>
 	</body>
