@@ -1,11 +1,13 @@
+<!-- tout à refaire -->
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 <?php
-require('../config.php');
+require('config.php');
+doit_etre_admin();
 
 if (isset($_REQUEST['username'], $_REQUEST['email'], $_REQUEST['type'], $_REQUEST['password'])){
 	// récupérer le nom d'utilisateur et supprimer les antislashes ajoutés par le formulaire
