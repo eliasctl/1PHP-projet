@@ -10,7 +10,7 @@ define('DB_NOM', '1php');
 
  
 // Connexion � la base de donn�es MySQL 
-$local_DB = false;
+$local_DB = true;
 if ($local_DB === true){
     $conn = mysqli_connect('localhost', 'root', 'root', '1php-proj');
 } else {
