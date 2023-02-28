@@ -17,7 +17,7 @@ function doit_etre_admin(){
     }
 }
 
-function recuperer_video(){
+function recuperer_les_videos(){
     // cette fonction permet de récupérer les vidéos de la base de données
     // Sortie: tableau_de_videos[id][cathegorie]
     //                              [annee]
@@ -47,6 +47,26 @@ function recuperer_video(){
         $tableau_de_videos[$row['id']]['telechargement'] = $row['telechargement'];
     }
     return $tableau_de_videos;
+}
+
+function recuperer_les_utilisateurs(){
+    // cette fonction permet de récupérer les utilisateurs de la base de données
+    // Sortie: tableau_de_utilisateurs[id][pseudo]
+    //                                  [email]
+    //                                  [type]
+    //                                  [code]
+
+    global $conn;
+    $query = "SELECT * FROM `utilisateurs`";
+    $res = mysqli_query($conn, $query);
+    $tableau_de_utilisateurs = array();
+    while($row = mysqli_fetch_assoc($res)){
+        $tableau_de_utilisateurs[$row['id']]['pseudo'] = $row['pseudo'];
+        $tableau_de_utilisateurs[$row['id']]['email'] = $row['email'];
+        $tableau_de_utilisateurs[$row['id']]['type'] = $row['type'];
+        $tableau_de_utilisateurs[$row['id']]['code'] = $row['code'];
+    }
+    return $tableau_de_utilisateurs;
 }
 
 ?>
