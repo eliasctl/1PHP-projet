@@ -83,3 +83,21 @@ p.errorMessage {
   color: #ffffff;
   border-radius: 3px;
 }
+
+/* NAV */
+
+.nav-big-container {
+  background: #1c242d;
+  display: flex;
+  justify-content: right;
+}
+
+.img-nav {
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+}
+
+a {
+  text-decoration: none;
+}

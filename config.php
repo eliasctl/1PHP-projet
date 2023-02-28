@@ -8,17 +8,17 @@ define('DB_CODE', '@root123');
 define('DB_NOM', '1php');
 
 
- 
-// Connexion � la base de donn�es MySQL 
+
+// Connexion a la base de donnees MySQL 
 $local_DB = true;
-if ($local_DB === true){
+if ($local_DB === true) {
     $conn = mysqli_connect('localhost', 'root', 'root', '1php-proj');
 } else {
     $conn = mysqli_connect(DB_SERVEUR, DB_PSEUDO, DB_CODE, DB_NOM);
 }
- 
-// V�rifier la connexion
-if($conn === false){
+
+// Verifier la connexion
+if ($conn === false) {
     die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
 }
 ?>
