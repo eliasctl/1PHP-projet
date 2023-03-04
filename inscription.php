@@ -5,6 +5,7 @@
 </head>
 <body>
 <?php
+$page = 'inscription';
 require('config.php');
 
 if (isset($_REQUEST['pseudo'], $_REQUEST['email'], $_REQUEST['code'])){

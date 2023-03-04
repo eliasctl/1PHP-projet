@@ -1,4 +1,5 @@
 <?php
+	$page = 'deconnection';
 	// Initialiser la session
 	session_start();
 	

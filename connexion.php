@@ -5,6 +5,7 @@
 </head>
 <body>
 <?php
+$page = 'connexion';
 require('config.php');
 session_start();
 

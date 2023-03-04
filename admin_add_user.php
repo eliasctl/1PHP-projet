@@ -6,6 +6,7 @@
 </head>
 <body>
 <?php
+$page  = 'admin_add_user';
 require('config.php');
 doit_etre_admin();
 

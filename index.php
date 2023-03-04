@@ -1,5 +1,5 @@
 ﻿<?php
-
+	$page = 'accueil';
 	session_start();
 	require('config.php');
 ?>
