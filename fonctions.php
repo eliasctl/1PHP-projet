@@ -1,23 +1,26 @@
 <?php
 
-function doit_etre_connecte(){
+function doit_etre_connecte()
+{
     // cette fonction permet de vérifier si une personne est connecté
     // si elle n'est pas connecté on la renvoie sur la page de connexion
-    if(!isset($_SESSION["pseudo"])){
+    if (!isset($_SESSION["pseudo"])) {
         header("Location: connexion.php");
-        exit(); 
+        exit();
     }
 }
 
-function doit_etre_admin(){
+function doit_etre_admin()
+{
     // on vérifie si la personne est admin pour lui autoriser l'accès à la page
     // si elle ne l'est pas alors on affiche un popup alert et redirection vers la page d'accueil
-    if($_SESSION["type"] !== 'admin'){
+    if ($_SESSION["type"] !== 'admin') {
         echo "<script type='text/javascript'>alert('Cette page est réservée aux administrateurs'); window.location.href='index.php';</script>";
     }
 }
 
-function recuperer_les_videos(){
+function recuperer_les_videos()
+{
     // cette fonction permet de récupérer les vidéos de la base de données
     // Sortie: tableau_de_videos[id][cathegorie]
     //                              [annee]
@@ -34,7 +37,7 @@ function recuperer_les_videos(){
     $query = "SELECT * FROM `videos`";
     $res = mysqli_query($conn, $query);
     $tableau_de_videos = array();
-    while($row = mysqli_fetch_assoc($res)){
+    while ($row = mysqli_fetch_assoc($res)) {
         $tableau_de_videos[$row['id']]['cathegorie'] = $row['cathegorie'];
         $tableau_de_videos[$row['id']]['annee'] = $row['annee'];
         $tableau_de_videos[$row['id']]['titre'] = $row['titre'];
@@ -49,7 +52,8 @@ function recuperer_les_videos(){
     return $tableau_de_videos;
 }
 
-function recuperer_les_utilisateurs(){
+function recuperer_les_utilisateurs()
+{
     // cette fonction permet de récupérer les utilisateurs de la base de données
     // Sortie: tableau_de_utilisateurs[id][pseudo]
     //                                  [email]
@@ -60,7 +64,7 @@ function recuperer_les_utilisateurs(){
     $query = "SELECT * FROM `utilisateurs`";
     $res = mysqli_query($conn, $query);
     $tableau_de_utilisateurs = array();
-    while($row = mysqli_fetch_assoc($res)){
+    while ($row = mysqli_fetch_assoc($res)) {
         $tableau_de_utilisateurs[$row['id']]['pseudo'] = $row['pseudo'];
         $tableau_de_utilisateurs[$row['id']]['email'] = $row['email'];
         $tableau_de_utilisateurs[$row['id']]['type'] = $row['type'];

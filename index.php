@@ -1,19 +1,24 @@
 ﻿<?php
-	$page = 'accueil';
-	session_start();
-	require('config.php');
+$page = 'accueil';
+session_start();
+require('config.php');
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
+
+<head>
 	<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div class="sucess">
-		<h1>Bienvenue <?php echo $_SESSION['pseudo']; ?>!</h1>
+</head>
+
+<body>
+	<div class="sucess">
+		<h1>Bienvenue
+			<?php echo $_SESSION['pseudo']; ?>!
+		</h1>
 		<p>C'est votre espace utilisateur.</p>
 		<a href="deconnection.php">Déconnexion</a>
 		<a href="test.php">liste des films</a>
-		</div>
-	</body>
+	</div>
+</body>
+
 </html>

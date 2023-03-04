@@ -1,6 +1,6 @@
 <?php
-    session_start();
-    require('config.php');
+session_start();
+require('config.php');
 ?>
 
 <!-- include the script -->
@@ -19,7 +19,7 @@
             alertify.success('OK');
             $.post("fonctions.php", {
                 action: "btn"
-            }, function(code_html, status) {
+            }, function (code_html, status) {
                 alertify.success(code_html);
             });
         }, function () {
