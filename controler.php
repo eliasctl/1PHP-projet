@@ -10,7 +10,7 @@ if ($action != 'btn'){
 
 switch ($action) {
     case 'btn':
-        echo "OK!";
+        echo "OK blabla!";
         break;
 }
 ?>
