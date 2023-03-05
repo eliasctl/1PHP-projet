@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
+<body class="color1c242d">
 	<?php
 	$page = 'connexion';
 	require('config.php');

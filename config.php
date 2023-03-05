@@ -26,3 +26,6 @@ if ($conn === false) {
 
 // echo "<title>MDB&co | " . $page . "</title>";
 ?>
+
+
+<link rel="stylesheet" href="assets/style.css" />
