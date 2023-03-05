@@ -9,7 +9,6 @@
 	<?php
 	$page = 'connexion';
 	require('config.php');
-	session_start();
 
 	if (isset($_POST['pseudo'])) {
 		$pseudo = stripslashes($_REQUEST['pseudo']);
@@ -27,7 +26,7 @@
 			if ($utilisateur['type'] == 'admin') {
 				header('location: admin_home.php');
 			} else {
-				header('location: index.php');
+				header('index.php');
 			}
 		} else {
 			$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
@@ -40,7 +39,15 @@
 		<input type="text" class="box-input" name="pseudo" placeholder="Nom d'utilisateur">
 		<input type="password" class="box-input" name="code" placeholder="Mot de passe">
 		<input type="submit" value="Connexion " name="submit" class="box-button">
-		<p class="box-register">Vous êtes nouveau ici? <a href="inscription.php">S'inscrire</a></p>
+		<p class="box-register">Vous êtes nouveau ici ?
+			<br>
+			<a href="inscription.php">S'inscrire</a>
+		</p>
+
+		<?php if (!empty($message)) {
+			echo "<p class='errorMessage'>" . $message . "</p>";
+		} ?>
+
 
 		<?php if (!empty($message)) { echo "<p class='errorMessage'> ".$message."</p>";} ?>
 	</form>
