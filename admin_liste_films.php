@@ -33,14 +33,15 @@
             <thead>
                 <tr>
                     <th>Id</th>
+                    <th>Cathégorie</th>
                     <th>Titre</th>
-                    <th>Realisateur</th>
+                    <th>Réalisateur</th>
                     <th>Acteurs</th>
                     <th>Description</th>
                     <th>Image</th>
                     <th>Prix</th>
                     <th>Spoiler</th>
-                    <th>Telechargement</th>
+                    <th>Téléchargement</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +49,7 @@
                     foreach(recuperer_les_videos() as $id => $video){
                         echo "<tr>";
                         echo "<td>".$id."</td>";
+                        echo "<td>".$video['cathegorie']."</td>";
                         echo "<td>".$video['titre']."</td>";
                         echo "<td>".$video['realisateur']."</td>";
                         echo "<td>".$video['acteurs']."</td>";

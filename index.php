@@ -2,6 +2,7 @@
 	$page = 'accueil';
 	session_start();
 	require('config.php');
+	doit_etre_connecte();
 ?>
 <!DOCTYPE html>
 <html>
