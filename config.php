@@ -1,6 +1,7 @@
 <?php
 require('fonctions.php');
 require('assets/assets.php');
+require('nav.php');
 
 // Informations d'identification
 define('DB_SERVEUR', 'eliascastel.ddns.net');
