@@ -1,9 +1,9 @@
 <?php
-if (isset($_POST['action'])){
+if (isset($_POST['action'])) {
     $action = $_POST['action'];
 }
 
-if ($action != 'btn'){
+if ($action != 'btn') {
     echo "haiiiillll";
     exit();
 }
