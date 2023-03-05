@@ -25,7 +25,7 @@
 			$_SESSION['type'] = $utilisateur['type'];
 			// vérifier si l'utilisateur est un administrateur ou un utilisateur
 			if ($utilisateur['type'] == 'admin') {
-				header('location: admin/home.php');
+				header('location: admin_home.php');
 			} else {
 				header('location: index.php');
 			}
@@ -42,11 +42,7 @@
 		<input type="submit" value="Connexion " name="submit" class="box-button">
 		<p class="box-register">Vous êtes nouveau ici? <a href="inscription.php">S'inscrire</a></p>
 
-		<?php if (!empty($message)) { ?>
-			<p class="errorMessage">
-				<?php echo $message; ?>
-			</p>
-		<?php } ?>
+		<?php if (!empty($message)) { echo "<p class='errorMessage'> ".$message."</p>";} ?>
 	</form>
 </body>
 
