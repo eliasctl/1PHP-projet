@@ -13,7 +13,7 @@ require('config.php');
 <body>
 	<div class="sucess">
 		<h1>Bienvenue
-			<?php echo $_SESSION['pseudo']; ?>!
+			<?php echo $_SESSION['pseudo']; ?>
 		</h1>
 		<p>C'est votre espace utilisateur.</p>
 		<a href="deconnection.php">Déconnexion</a>

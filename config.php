@@ -10,7 +10,7 @@ define('DB_NOM', '1php');
 
 
 // Connexion a la base de donnees MySQL 
-$local_DB = true;
+$local_DB = false;
 if ($local_DB === true) {
     $conn = mysqli_connect('localhost', 'root', 'root', '1php-proj');
 } else {
@@ -22,5 +22,5 @@ if ($conn === false) {
     die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
 }
 
-echo "<title>MDB&co | " . $page . "</title>";
+// echo "<title>MDB&co | " . $page . "</title>";
 ?>
