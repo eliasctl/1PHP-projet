@@ -5,6 +5,10 @@
 	$page = 'connexion';
 	require('config.php');
 
+	if (!empty($_SESSION['pseudo'])) {
+		header('location: index.php');
+	}
+
 	if (isset($_POST['pseudo'])) {
 		$pseudo = stripslashes($_REQUEST['pseudo']);
 		$pseudo = mysqli_real_escape_string($conn, $pseudo);
@@ -18,11 +22,7 @@
 			$_SESSION['pseudo'] = $pseudo;
 			$_SESSION['type'] = $utilisateur['type'];
 			// vérifier si l'utilisateur est un administrateur ou un utilisateur
-			if ($utilisateur['type'] == 'admin') {
-				header('location: admin_home.php');
-			} else {
-				header('index.php');
-			}
+			header('index.php');
 		} else {
 			$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
 		}

@@ -1,4 +1,4 @@
-<html lang="FR">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -111,7 +111,6 @@
             }
         }
     </style>
-    <title>NavBar</title>
 </head>
 
 <body>
@@ -134,13 +133,20 @@
             <a href="#">Films</a>
             <a href="#">Panier</a>
             <?php
-            if (isset($_SESSION['id'])) {
+            if (!empty($_SESSION['pseudo'])) {
+                if ($_SESSION['type'] === 'admin'){
+                    echo '<a href="admin.php">Admin</a>';
+                }
                 echo '<a href="deconnexion.php">Déconnexion</a>';
             } else {
                 echo '<a href="connexion.php">Connexion</a>';
             }
+            if (empty($_SESSION['pseudo'])) {
+                echo '<a href="inscription.php">Inscription</a>';
+            }
             ?>
         </div>
     </div>
+    <br>
 
 </html>

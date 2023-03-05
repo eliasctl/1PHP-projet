@@ -83,10 +83,3 @@ p.errorMessage {
   color: #ffffff;
   border-radius: 3px;
 }
-
-.page {
-  background: #fff;
-  display: flex;
-  width: 90%;
-  float: right;
-}

@@ -1,7 +1,5 @@
 ﻿<?php
 $page = 'admin_home';
-// Initialiser la session
-session_start();
 // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
 require('config.php');
 doit_etre_admin();
@@ -9,7 +7,7 @@ doit_etre_admin();
 ?>
 <!DOCTYPE html>
 <html>
-	
+
 <body>
 	<div class="sucess">
 		<h1>Bienvenue

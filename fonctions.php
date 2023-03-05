@@ -22,16 +22,16 @@ function doit_etre_admin()
 function recuperer_les_videos()
 {
     // cette fonction permet de récupérer les vidéos de la base de données
-    // Sortie: tableau_de_videos[id][cathegorie]
-    //                              [annee]
-    //                              [titre]
-    //                              [realisateur]
-    //                              [acteurs]
-    //                              [description]
-    //                              [image]
-    //                              [prix]
-    //                              [spoiler]
-    //                              [telechargement]
+    // Sortie: tableau_de_videos['id']['cathegorie']
+    //                              ['annee']
+    //                              ['titre']
+    //                              ['realisateur']
+    //                              ['acteurs']
+    //                              ['description']
+    //                              ['image']
+    //                              ['prix']
+    //                              ['spoiler']
+    //                              ['telechargement']
 
     global $conn;
     $query = "SELECT * FROM `videos`";

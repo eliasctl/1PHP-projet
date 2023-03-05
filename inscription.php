@@ -5,6 +5,10 @@
 	$page = 'inscription';
 	require('config.php');
 
+	if (isset($_SESSION['pseudo'])) {
+		header("Location: index.php");
+	}
+
 	if (isset($_REQUEST['pseudo'], $_REQUEST['email'], $_REQUEST['code'])) {
 		// récupérer le nom d'utilisateur et supprimer les antislashes ajoutés par le formulaire
 		$pseudo = stripslashes($_REQUEST['pseudo']);
