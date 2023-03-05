@@ -1,3 +1,5 @@
+<?php require('config.php'); ?>
+
 <html lang="FR">
 
 <head>
@@ -13,6 +15,7 @@
     <div>
       <a href="#">
         <img class="img-nav" src="assets/cadenasOuvert.png" />
+        <i class="fa-solid fa-user"></i>
       </a>
       <a href="#">
         <img class="img-nav" src="assets/cadenasFerme.png" />
