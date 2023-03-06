@@ -2,7 +2,7 @@
 session_start();
 require('fonctions.php');
 require('assets/assets.php');
-require('nav.php');
+//require('nav.php');
 
 // Connexion a la base de donnees MySQL 
 $local_DB = false;

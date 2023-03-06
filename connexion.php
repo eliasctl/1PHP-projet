@@ -21,6 +21,7 @@
 			$utilisateur = mysqli_fetch_assoc($result);
 			$_SESSION['pseudo'] = $pseudo;
 			$_SESSION['type'] = $utilisateur['type'];
+			$_SESSION['id'] = $utilisateur['id'];
 			// vérifier si l'utilisateur est un administrateur ou un utilisateur
 			header('index.php');
 		} else {
