@@ -2,7 +2,7 @@
 $page = 'admin_liste_films';
 // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
 require('config.php');
-//doit_etre_admin();
+doit_etre_admin();
 ?>
 <!doctype html>
 

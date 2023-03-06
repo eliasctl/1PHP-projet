@@ -1,6 +1,10 @@
 <?php
 $page = "Info film";
 require('config.php');
+if (!isset($_GET['id_film'])) {?>
+    <script type='text/javascript'>alert("Aucun id de film n'est rentré !"); window.location.href='index.php';</script>
+<?php
+}
 $id_film = $_GET['id_film'];
 $film = recuperer_les_videos()[$id_film];
 ?>
