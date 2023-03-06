@@ -110,6 +110,31 @@
                 overflow-y: auto;
             }
         }
+        /* Liste déroulante */
+        .navbar {
+            position: absolute;
+        }
+        .navbar li {
+            height: auto;
+            float: left;
+            text-align: center;
+            list-style: none;
+            font: normal bold 13px/1em Arial, Verdana, Helvetica;
+        }
+        .navbar a {
+            text-decoration: none;
+            display: block;
+        }
+
+        .navbar li ul {
+            display: none;
+            height: auto;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar li:hover ul {
+            display: block;
+        }
     </style>
 </head>
 
@@ -130,21 +155,35 @@
         </div>
 
         <div class="nav-links">
-            <a href="#">Films</a>
-            <a href="#">Panier</a>
+            <a href="#" title="Films"><i class="fa-solid fa-film"></i></a>
+            <a href="#" title="Panier"><i class="fa-solid fa-cart-shopping"></i></a>
+
+            <!-- Fait un menu déroulant de liens -->
+            <a href="#">
+                <ul class="navbar">
+                    <li>
+                        <a href="#">Liste des articles</a>
+                        <ul>
+                            <li><a href="#">Liste des articles</a></li>
+                            <li><a href="#">Ajouter un article</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </a>
+
+
             <?php
             if (!empty($_SESSION['pseudo'])) {
                 if ($_SESSION['type'] === 'admin'){
-                    echo '<a href="admin.php">Admin</a>';
+                    echo '<a href="admin_liste_films.php" title="Menu admin"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
                 }
-                echo '<a href="deconnexion.php">Déconnexion</a>';
+                echo '<a href="deconnexion.php" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></a>';
             } else {
                 echo '<a href="connexion.php">Connexion</a>';
-            }
-            if (empty($_SESSION['pseudo'])) {
                 echo '<a href="inscription.php">Inscription</a>';
             }
             ?>
+            &emsp;
         </div>
     </div>
     <br>

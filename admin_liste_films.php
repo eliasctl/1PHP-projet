@@ -31,7 +31,7 @@ doit_etre_admin();
                 <tr>
                     <th>Id</th>
                     <th>Cathégorie</th>
-                    <th>Titre</th>
+                    <th>Titre & lien</th>
                     <th>Réalisateur</th>
                     <th>Acteurs</th>
                     <th>Description</th>
@@ -47,7 +47,7 @@ doit_etre_admin();
                         echo "<tr>";
                         echo "<td>".$id."</td>";
                         echo "<td>".$video['cathegorie']."</td>";
-                        echo "<td>".$video['titre']."</td>";
+                        echo "<td><a href='info_un_film.php?id_film=".$id."'>".$video['titre']."</a></td>";
                         echo "<td>".$video['realisateur']."</td>";
                         echo "<td>".$video['acteurs']."</td>";
                         echo "<td>".$video['description']."</td>";
@@ -61,4 +61,5 @@ doit_etre_admin();
             </tbody>
         </table>    
     </body>
+    
 </html>

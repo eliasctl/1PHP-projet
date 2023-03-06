@@ -5,8 +5,7 @@ function doit_etre_connecte()
     // cette fonction permet de vérifier si une personne est connecté
     // si elle n'est pas connecté on la renvoie sur la page de connexion
     if (!isset($_SESSION["pseudo"])) {
-        header("Location: connexion.php");
-        exit();
+        echo "<script type='text/javascript'>alert('Vous devez être connecter pour accéder à cette page'); window.location.href='connexion.php';</script>";
     }
 }
 
