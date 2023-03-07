@@ -58,6 +58,7 @@ function recuperer_les_utilisateurs()
     //                                  [email]
     //                                  [type]
     //                                  [code]
+    //                                  [id]
 
     global $conn;
     $query = "SELECT * FROM `utilisateurs`";
@@ -68,6 +69,7 @@ function recuperer_les_utilisateurs()
         $tableau_de_utilisateurs[$row['id']]['email'] = $row['email'];
         $tableau_de_utilisateurs[$row['id']]['type'] = $row['type'];
         $tableau_de_utilisateurs[$row['id']]['code'] = $row['code'];
+        $tableau_de_utilisateurs[$row['id']]['id'] = $row['id'];
     }
     return $tableau_de_utilisateurs;
 }

@@ -6,7 +6,7 @@
 	require('config.php');
 
 	if (!empty($_SESSION['pseudo'])) {
-		header('location: index.php');
+		header('Location: /');
 	}
 
 	if (isset($_POST['pseudo'])) {
@@ -23,7 +23,7 @@
 			$_SESSION['type'] = $utilisateur['type'];
 			$_SESSION['id'] = $utilisateur['id'];
 			// vérifier si l'utilisateur est un administrateur ou un utilisateur
-			header('index.php');
+			header('Location: /');
 		} else {
 			$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
 		}
