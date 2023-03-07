@@ -1,6 +1,6 @@
 <?php
-if (isset($_GET['action'])) {
-    $action = $_GET['action'];
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
 }
 
 if ($action != 'btn') {
@@ -10,7 +10,7 @@ if ($action != 'btn') {
 
 switch ($action) {
     case 'btn':
-        echo "OK blabla!";
+        echo "OK blabla";
         break;
 }
 ?>
