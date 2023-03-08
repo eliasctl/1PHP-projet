@@ -9,7 +9,6 @@ if (isset($_GET['id_utilisateur'])) {
         $utilisateur = recuperer_les_utilisateurs()[$_GET['id_utilisateur']];
     }
 }
-var_dump($utilisateur);
 ?>
 
 <script>
@@ -18,8 +17,15 @@ var_dump($utilisateur);
         alertify.prompt( 'Modifier le mot de passe', 'Entrez votre nouveau mot de passe', 'Mot de passe'
                , function(evt, value) { alertify.success('Vous avez entré: ' + value + ' -' +id) }
                , function() { alertify.error('Annuler') });
-        
-        $.ajax
+        $.post("fonctions.php", {
+            action: "modifierCode",
+            id: id,
+            code: value
+        }, function (code_html, status) {
+            alertify.success(code_html);
+        });
+
+
     }
 
 </script>
@@ -46,7 +52,6 @@ var_dump($utilisateur);
                 <input type="password" name="password" placeholder="Nouveau mot de passe">
                 <input type="submit" value="Modifier">
             </form>
-
 
         </center>
     </body>

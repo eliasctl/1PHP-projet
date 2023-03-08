@@ -1,5 +1,6 @@
 <?php
 
+
 function doit_etre_connecte()
 {
     // cette fonction permet de vérifier si une personne est connecté
@@ -59,6 +60,7 @@ function recuperer_les_utilisateurs()
     //                                  [type]
     //                                  [code]
     //                                  [id]
+    //                                  [panier]
 
     global $conn;
     $query = "SELECT * FROM `utilisateurs`";
@@ -70,8 +72,63 @@ function recuperer_les_utilisateurs()
         $tableau_de_utilisateurs[$row['id']]['type'] = $row['type'];
         $tableau_de_utilisateurs[$row['id']]['code'] = $row['code'];
         $tableau_de_utilisateurs[$row['id']]['id'] = $row['id'];
+        $tableau_de_utilisateurs[$row['id']]['panier'] = $row['panier'];
     }
     return $tableau_de_utilisateurs;
 }
 
+function recuperer_le_panier($id_utilisateur)
+{
+    // cette fonction permet de récupérer le panier d'un utilisateur
+    // Entrée: id de l'utilisateur
+    // Sortie: tableau_de_panier[id_film][id]
+    //                              [titre]
+    //                              [image]
+    //                              [prix]
+
+    global $conn;
+    $query = "SELECT `panier` FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
+    $res = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($res);
+    $panier = $row['panier'];
+    $tableau_panier = explode(",", $panier);
+    $tableau_de_panier = array();
+    foreach ($tableau_panier as $id_film) {
+        $query = "SELECT * FROM `videos` WHERE `id` = '" . $id_film . "'";
+        $res = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($res);
+        $tableau_de_panier[$id_film]['id'] = $row['id'];
+        $tableau_de_panier[$id_film]['titre'] = $row['titre'];
+        $tableau_de_panier[$id_film]['image'] = $row['image'];
+        $tableau_de_panier[$id_film]['prix'] = $row['prix'];
+    }
+    return $tableau_de_panier;
+}
+
+function ajouter_un_film_au_panier($id_film, $id_utilisateur)
+{
+    // cette fonction permet d'ajouter un film au panier
+    // Entrée: id du film
+    //         id de l'utilisateur
+    // Sortie: true si l'ajout s'est bien passé
+    //         false si l'ajout n'a pas pu se faire
+    global $conn;
+    $query = "SELECT `panier` FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
+    $res = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($res);
+    $panier = $row['panier'];
+    $tableau_panier = explode(",", $panier);
+    if (in_array($id_film, $tableau_panier)) {
+        echo "Le film est déjà dans le panier";
+    } else {
+        $panier = $panier . "," . $id_film;
+        $query = "UPDATE `utilisateurs` SET `panier` = '" . $panier . "' WHERE `id` = '" . $id_utilisateur . "'";
+        $res = mysqli_query($conn, $query);
+        if ($res) {
+            echo "Ok! Le film a été ajouté au panier";
+        } else {
+            echo "Une erreur est survenue";
+        }
+    }
+}
 ?>
