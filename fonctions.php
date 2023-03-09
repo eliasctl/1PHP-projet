@@ -32,6 +32,7 @@ function recuperer_les_videos()
     //                              ['prix']
     //                              ['spoiler']
     //                              ['telechargement']
+    //                              ['id']
 
     global $conn;
     $query = "SELECT * FROM `videos`";
@@ -48,6 +49,7 @@ function recuperer_les_videos()
         $tableau_de_videos[$row['id']]['prix'] = $row['prix'];
         $tableau_de_videos[$row['id']]['spoiler'] = $row['spoiler'];
         $tableau_de_videos[$row['id']]['telechargement'] = $row['telechargement'];
+        $tableau_de_videos[$row['id']]['id'] = $row['id'];
     }
     return $tableau_de_videos;
 }

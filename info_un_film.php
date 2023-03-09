@@ -35,7 +35,7 @@ $film = recuperer_les_videos()[$id_film];
             <img src="<?php echo $film['image']; ?>" alt="Image du film" height="50%"/>
             <br><br>
             <h3><?php echo "<u>Prix :</u> ".$film['prix']; ?></h3>
-            <i class="fa-solid fa-cart-shopping fa-2xl" style="color: green;"><sup>+</sup></i>
+            <i class="green fa-solid fa-cart-plus fa-2xl" style="color: green;"></i>
             <br><br>
         </body>
     </center>

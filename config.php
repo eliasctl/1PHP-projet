@@ -24,3 +24,4 @@ if (isset($page)) {
 ?>
 
 <link rel="stylesheet" href="assets/style.css" />
+<meta charset="utf-8" />
