@@ -94,13 +94,16 @@ function recuperer_le_panier($id_utilisateur)
     $tableau_panier = explode(",", $panier);
     $tableau_de_panier = array();
     foreach ($tableau_panier as $id_film) {
-        $query = "SELECT * FROM `videos` WHERE `id` = '" . $id_film . "'";
-        $res = mysqli_query($conn, $query);
-        $row = mysqli_fetch_assoc($res);
-        $tableau_de_panier[$id_film]['id'] = $row['id'];
-        $tableau_de_panier[$id_film]['titre'] = $row['titre'];
-        $tableau_de_panier[$id_film]['image'] = $row['image'];
-        $tableau_de_panier[$id_film]['prix'] = $row['prix'];
+        $id_film = intval($id_film);
+        if ($id_film != 0){
+            $query = "SELECT * FROM `videos` WHERE `id` = '" . $id_film . "'";
+            $res = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($res);
+            $tableau_de_panier[$id_film]['id'] = $row['id'];
+            $tableau_de_panier[$id_film]['titre'] = $row['titre'];
+            $tableau_de_panier[$id_film]['image'] = $row['image'];
+            $tableau_de_panier[$id_film]['prix'] = $row['prix'];
+        }
     }
     return $tableau_de_panier;
 }
