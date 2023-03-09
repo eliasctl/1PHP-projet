@@ -134,4 +134,41 @@ function ajouter_un_film_au_panier($id_film, $id_utilisateur)
         }
     }
 }
+
+function supprimer_un_film_du_panier($id_film, $id_utilisateur)
+{
+    // cette fonction permet de supprimer un film du panier
+    // Entrée: id du film
+    //         id de l'utilisateur
+    // Sortie: true si la suppression s'est bien passée
+    //         false si la suppression n'a pas pu se faire
+    global $conn;
+    $query = "SELECT `panier` FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
+    $res = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($res);
+    $panier = $row['panier'];
+    $tableau_panier_temp = explode(",", $panier);
+    $tableau_panier = array();
+    foreach ($tableau_panier_temp as $un_id_film) {
+        if ($un_id_film != 0){
+            $tableau_panier[] = intval($un_id_film);
+        }
+    }
+    var_dump($tableau_panier);
+    if (in_array($id_film, $tableau_panier)) {
+        $tableau_panier = array_diff($tableau_panier, array($id_film));
+        $panier = implode(",", $tableau_panier);
+        var_dump($panier);
+        $query = "UPDATE `utilisateurs` SET `panier` = '" . $panier . "' WHERE `id` = '" . $id_utilisateur . "'";
+        $res = mysqli_query($conn, $query);
+        if ($res) {
+            echo "Ok! Le film a été supprimé du panier";
+        } else {
+            echo "Une erreur est survenue";
+        }
+    } else {
+        echo "Le film n'est pas dans le panier";
+    }
+}
+
 ?>
