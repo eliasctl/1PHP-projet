@@ -2,7 +2,7 @@
 require('config.php');
 if(empty($_POST['action'])) {
     echo "Argument invalide !";
-    //exit();
+    exit();
 }
 $action = $_POST['action'];
 
@@ -26,8 +26,6 @@ switch ($action) {
         }
         echo $retour;
         break;
-
-
 
 }
 ?>

@@ -9,6 +9,38 @@ $id_film = $_GET['id_film'];
 $film = recuperer_les_videos()[$id_film];
 ?>
 
+<script>
+    function ajouter_un_film_au_panier(id_film, id_utilisateur) {
+        alertify.confirm('Confirmation', 'Voulez-vous vraiment ajouter ce film à votre panier?', function() {
+            $.ajax({
+                url: 'controler.php',
+                type: 'POST',
+                data: 'action=ajouter_un_film_au_panier&id_film=' + id_film + '&id_utilisateur=' + id_utilisateur,
+                dataType: 'html',
+                success: function (code_html, status) {
+                    nb = code_html.search(/Ok/i);
+                    if(nb !== -1){
+                        alertify.success(code_html);
+                    }else{
+                        alertify.message(code_html);
+                    }
+                }
+            });
+            alertify.confirm().close();
+        }, function () {
+            alertify.error("L'opération a été annulée");
+        }).set('labels', {ok: 'Oui', cancel: 'Non'});
+    }
+    function vous_devez_etre_connecte() {
+        alertify.confirm('Connexion', 'Vous devez être connecté pour réaliser cette action', function() {
+            document.location.href="connexion.php";
+            alertify.confirm().close();
+        }, function () {
+            alertify.error("vous n'êtes pas connecté !");
+        }).set('labels', {ok: 'Oui', cancel: 'Non'});
+    }
+</script>
+
 <!doctype html>
 <html lang="fr">
 
@@ -104,9 +136,13 @@ $film = recuperer_les_videos()[$id_film];
             </h3>
             <br><br>
             <center>
-                <button class="buy-btn" type="submit">Ajouter au panier
-                    <i class="fa-solid fa-cart-shopping"></i>
-                </button>
+                <?php
+                    if (isset($_SESSION['id'])) {
+                        echo "<button class='buy-btn' type='submit' onclick='ajouter_un_film_au_panier(" . $id_film . ", " . $_SESSION['id'] . ")'>Ajouter au panier <i class='fa-solid fa-cart-shopping'></i></button>";
+                    } else {
+                        echo "<button class='buy-btn' type='submit' onclick='vous_devez_etre_connecte()'>Ajouter au panier <i class='fa-solid fa-cart-shopping'></i></button>";
+                    }
+                ?>
             </center>
         </div>
     </div>

@@ -84,11 +84,11 @@ $liste_des_videos = recuperer_les_videos();
     <div class="grid">
         <?php
         foreach ($liste_des_videos as $une_video) {
-            echo '<a href="info_un_film.php?id_film=' . $une_video['id'] . '">';
             echo '<div class="grid-item">';
+            echo '<a href="info_un_film.php?id_film=' . $une_video['id'] . '">';
             echo '<img src="' . $une_video['image'] . '" alt="" width="75%">';
-            echo '</div>';
             echo '</a>';
+            echo '</div>';
         }
         ?>
     </div>
