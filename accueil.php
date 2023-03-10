@@ -1,6 +1,7 @@
 <?php
 $page = 'panier';
 require('config.php');
+require('nav.php');
 
 if (!empty($_GET['recherche'])) {
     $liste_des_videos = recherche_liste_film($_GET['recherche']);
@@ -18,16 +19,10 @@ if (!empty($_GET['recherche'])) {
 
 <head>
     <style>
-        /* :root {
+        :root {
             --primaire: #F9DBBB;
             --secondaire: #4E6E81;
             --bordure: #2E3840;
-        } */
-
-        :root {
-            --primaire: #EDE9D5;
-            --secondaire: #E7AB9A;
-            --bordure: #DF7857;
         }
 
         body {
@@ -52,7 +47,6 @@ if (!empty($_GET['recherche'])) {
             padding: 15px;
             font-size: 30px;
             border-radius: 10px;
-            height: 90%;
         }
 
         .title {
@@ -65,7 +59,7 @@ if (!empty($_GET['recherche'])) {
             font-family: 'Courier New', Courier, monospace;
         }
 
-        a:hover {
+        .a:hover {
             scale: 1.5;
         }
 
@@ -153,7 +147,7 @@ if (!empty($_GET['recherche'])) {
         <?php
         foreach ($liste_des_videos as $une_video) {
             echo '<div class="grid-item">';
-            echo '<a href="info_un_film.php?id_film=' . $une_video['id'] . '">';
+            echo '<a class="a" href="info_un_film.php?id_film=' . $une_video['id'] . '">';
             echo '<img src="' . $une_video['image'] . '" alt="" width="75%">';
             echo '</a>';
             echo '</div>';

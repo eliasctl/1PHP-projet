@@ -23,7 +23,7 @@
         .nav {
             height: 50px;
             width: 100%;
-            background-color: var(--primaire);
+            background-color: var(--bordure);
             position: relative;
         }
 
@@ -56,7 +56,7 @@
         }
 
         .nav>.nav-links>a:hover {
-            background-color: var(--bordure);
+            background-color: var(--secondaire);
         }
 
         .nav>#nav-check {
@@ -165,32 +165,21 @@
         </div>
 
         <div class="nav-links">
-            <a href="#" title="Films"><i class="fa-solid fa-film"></i></a>
-            <a href="#" title="Panier"><i class="fa-solid fa-cart-shopping"></i></a>
-
-            <!-- Fait un menu déroulant de liens -->
-            <a href="#">
-                <ul class="navbar">
-                    <li>
-                        <a href="#">Liste des articles</a>
-                        <ul>
-                            <li><a href="#">Liste des articles</a></li>
-                            <li><a href="#">Ajouter un article</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </a>
-
-
             <?php
             if (!empty($_SESSION['pseudo'])) {
                 if ($_SESSION['type'] === 'admin') {
-                    echo '<a href="admin_liste_films.php" title="Menu admin"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
+                    echo '<a href="admin_add_user.php" title="Menu admin">add_User</a>'; // Ajout d'un utilisateur
+                    echo '<a href="admin_home.php" title="Menu admin">admin_home</a>'; // Page d'accueil admin
+                    echo '<a href="admin_liste_films.php" title="Menu admin">admin_liste_films</a>'; // Liste des films
+                    echo '<a href="admin_liste_utilisateurs.php" title="Menu admin">admin_liste_utilisateurs</a>'; // Liste des utilisateurs
+                } else {
+                    echo '<a href="profil.php" title="Profil"><i class="fa-solid fa-user"></i></a>'; // Profil
                 }
-                echo '<a href="deconnexion.php" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></a>';
+                echo '<a href="panier.php" title="Panier"><i class="fa-solid fa-cart-shopping"></i></a>'; // Panier
+                echo '<a href="deconnexion.php" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></a>'; // Déconnexion
             } else {
-                echo '<a href="connexion.php">Connexion</a>';
-                echo '<a href="inscription.php">Inscription</a>';
+                echo '<a href="connexion.php"><i class="fa-solid fa-link"></i></a>'; // Connexion
+                echo '<a href="inscription.php"><i class="fa-solid fa-user-plus"></i></a>'; // Inscription
             }
             ?>
             &emsp;

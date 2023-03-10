@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <body class="color1c242d">
 	<?php
 	$page = 'connexion';
@@ -23,7 +24,7 @@
 			$_SESSION['type'] = $utilisateur['type'];
 			$_SESSION['id'] = $utilisateur['id'];
 			// vérifier si l'utilisateur est un administrateur ou un utilisateur
-			header('Location: /');
+			header('Location: accueil.php');
 		} else {
 			$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
 		}
@@ -45,7 +46,9 @@
 		} ?>
 
 
-		<?php if (!empty($message)) { echo "<p class='errorMessage'> ".$message."</p>";} ?>
+		<?php if (!empty($message)) {
+			echo "<p class='errorMessage'> " . $message . "</p>";
+		} ?>
 	</form>
 </body>
 
