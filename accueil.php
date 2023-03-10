@@ -47,6 +47,8 @@ if (!empty($_GET['recherche'])) {
             padding: 15px;
             font-size: 30px;
             border-radius: 10px;
+            width: 90%;
+            margin-left: 5%;
         }
 
         .title {
