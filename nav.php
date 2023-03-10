@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
-            --primaire: #FFD4B2;
-            --secondaire: #FFF6BD;
-            --bordure: #CEEDC7;
+            --primaire: #F9DBBB;
+            --secondaire: #4E6E81;
+            --bordure: #2E3840;
         }
 
         * {
@@ -63,7 +63,7 @@
             display: none;
         }
 
-        @media (max-width:600px) {
+        @media (max-width:1000px) {
             .nav>.nav-btn {
                 display: inline-block;
                 position: absolute;
@@ -80,7 +80,7 @@
 
             .nav>.nav-btn>label:hover,
             .nav #nav-check:checked~.nav-btn>label {
-                background-color: rgba(0, 0, 0, 0.3);
+                background-color: var(--secondaire);
             }
 
             .nav>.nav-btn>label>span {
@@ -94,9 +94,9 @@
                 position: absolute;
                 display: block;
                 width: 100%;
-                background-color: #333;
+                background-color: var(--bordure);
                 height: 0px;
-                transition: all 0.3s ease-in;
+                transition: all 0.2s ease-in;
                 overflow-y: hidden;
                 top: 50px;
                 left: 0px;
@@ -151,11 +151,7 @@
 <body>
     <div class="nav">
         <input type="checkbox" id="nav-check">
-        <div class="nav-header">
-            <div class="nav-title">
-                Movies DataBase & co
-            </div>
-        </div>
+        <div class="nav-header"></div>
         <div class="nav-btn">
             <label for="nav-check">
                 <span></span>
@@ -173,7 +169,7 @@
                     echo '<a href="admin_liste_films.php" title="Menu admin">admin_liste_films</a>'; // Liste des films
                     echo '<a href="admin_liste_utilisateurs.php" title="Menu admin">admin_liste_utilisateurs</a>'; // Liste des utilisateurs
                 } else {
-                    echo '<a href="profil.php" title="Profil"><i class="fa-solid fa-user"></i></a>'; // Profil
+                    echo '<a href="profile.php" title="Profil"><i class="fa-solid fa-user"></i></a>'; // Profil
                 }
                 echo '<a href="panier.php" title="Panier"><i class="fa-solid fa-cart-shopping"></i></a>'; // Panier
                 echo '<a href="deconnexion.php" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></a>'; // Déconnexion
