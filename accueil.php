@@ -2,7 +2,7 @@
 $page = 'panier';
 require('config.php');
 
-if(!empty($_GET['recherche'])){
+if (!empty($_GET['recherche'])) {
     $liste_des_videos = recherche_liste_film($_GET['recherche']);
     $recherche = $_GET['recherche'];
     if (empty($liste_des_videos)) {
@@ -18,10 +18,16 @@ if(!empty($_GET['recherche'])){
 
 <head>
     <style>
-        :root {
+        /* :root {
             --primaire: #F9DBBB;
             --secondaire: #4E6E81;
             --bordure: #2E3840;
+        } */
+
+        :root {
+            --primaire: #EDE9D5;
+            --secondaire: #E7AB9A;
+            --bordure: #DF7857;
         }
 
         body {
@@ -59,6 +65,53 @@ if(!empty($_GET['recherche'])){
             font-family: 'Courier New', Courier, monospace;
         }
 
+        a:hover {
+            scale: 1.5;
+        }
+
+        /* css de la bare de recherche */
+        input[type=text] {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid var(--bordure);
+            border-radius: 4px;
+        }
+
+
+        input[type=submit] {
+            width: 10%;
+            background-color: var(--secondaire);
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: var(--bordure);
+        }
+
+        button {
+            width: 10%;
+            background-color: var(--secondaire);
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--bordure);
+        }
+
+        /* pour le redimentionnement de la page */
+
         @media (max-width: 1375px) {
             .grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -91,9 +144,8 @@ if(!empty($_GET['recherche'])){
         <form action="accueil.php" method="get">
             <input type="text" name="recherche" placeholder="Rechercher un film">
             <input type="submit" value="Rechercher">
-            <button type="button" onclick="window.location.href='accueil.php'">Supprimer la recherche</button>
+            <button type="button" onclick="window.location.href='accueil.php'">Effacer</button>
         </form>
-        <p>Recherche effectuée : <?php echo $recherche; ?></p>
 
     </center>
     <!-- une grille contenant les images des films que l'on a acheté -->

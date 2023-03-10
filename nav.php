@@ -5,6 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        :root {
+            --primaire: #FFD4B2;
+            --secondaire: #FFF6BD;
+            --bordure: #CEEDC7;
+        }
+
         * {
             box-sizing: border-box;
         }
@@ -17,7 +23,7 @@
         .nav {
             height: 50px;
             width: 100%;
-            background-color: #e66262;
+            background-color: var(--primaire);
             position: relative;
         }
 
@@ -50,7 +56,7 @@
         }
 
         .nav>.nav-links>a:hover {
-            background-color: rgba(0, 0, 0, 0.3);
+            background-color: var(--bordure);
         }
 
         .nav>#nav-check {
@@ -110,10 +116,12 @@
                 overflow-y: auto;
             }
         }
+
         /* Liste déroulante */
         .navbar {
             position: absolute;
         }
+
         .navbar li {
             height: auto;
             float: left;
@@ -121,6 +129,7 @@
             list-style: none;
             font: normal bold 13px/1em Arial, Verdana, Helvetica;
         }
+
         .navbar a {
             text-decoration: none;
             display: block;
@@ -132,6 +141,7 @@
             margin: 0;
             padding: 0;
         }
+
         .navbar li:hover ul {
             display: block;
         }
@@ -174,7 +184,7 @@
 
             <?php
             if (!empty($_SESSION['pseudo'])) {
-                if ($_SESSION['type'] === 'admin'){
+                if ($_SESSION['type'] === 'admin') {
                     echo '<a href="admin_liste_films.php" title="Menu admin"><i class="fa-solid fa-screwdriver-wrench"></i></a>';
                 }
                 echo '<a href="deconnexion.php" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></a>';
