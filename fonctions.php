@@ -1,6 +1,5 @@
 <?php
 
-
 function doit_etre_connecte()
 {
     // cette fonction permet de vérifier si une personne est connecté
@@ -171,6 +170,35 @@ function supprimer_un_film_du_panier($id_film, $id_utilisateur)
     } else {
         echo "Le film n'est pas dans le panier";
     }
+}
+
+function recherche_liste_film($text)
+{
+    // cette fonction permet de rechercher un film
+    // Entrée: texte à rechercher
+    // Sortie: tableau_de_recherche[id][id]
+    //                              [titre]
+    //                              [image]
+    //                              [prix]
+    global $conn;
+    $query = "SELECT * FROM `videos` WHERE `titre` LIKE '%" . $text . "%'";
+    $res = mysqli_query($conn, $query);
+    $tableau_de_recherche = array();
+    while ($row = mysqli_fetch_assoc($res)) {
+        $tableau_de_recherche[$row['id']]['id'] = $row['id'];
+        $tableau_de_recherche[$row['id']]['titre'] = $row['titre'];
+        $tableau_de_recherche[$row['id']]['image'] = $row['image'];
+        $tableau_de_recherche[$row['id']]['prix'] = $row['prix'];
+    }
+    $query = "SELECT * FROM `videos` WHERE `realisateur` LIKE '%" . $text . "%'";
+    $res = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_assoc($res)) {
+        $tableau_de_recherche[$row['id']]['id'] = $row['id'];
+        $tableau_de_recherche[$row['id']]['titre'] = $row['titre'];
+        $tableau_de_recherche[$row['id']]['image'] = $row['image'];
+        $tableau_de_recherche[$row['id']]['prix'] = $row['prix'];
+    }
+    return $tableau_de_recherche;
 }
 
 ?>

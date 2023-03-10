@@ -2,7 +2,16 @@
 $page = 'panier';
 require('config.php');
 
-$liste_des_videos = recuperer_les_videos();
+if(!empty($_GET['recherche'])){
+    $liste_des_videos = recherche_liste_film($_GET['recherche']);
+    $recherche = $_GET['recherche'];
+    if (empty($liste_des_videos)) {
+        $recherche = "Aucun résultat pour la recherche : " . $recherche;
+    }
+} else {
+    $liste_des_videos = recuperer_les_videos();
+    $recherche = "Aucune recherche n'a été effectuée !";
+}
 ?>
 
 <html lang="fr">
@@ -79,6 +88,13 @@ $liste_des_videos = recuperer_les_videos();
         <h1 class="title">
             Movies DataBase & co
         </h1>
+        <form action="accueil.php" method="get">
+            <input type="text" name="recherche" placeholder="Rechercher un film">
+            <input type="submit" value="Rechercher">
+            <button type="button" onclick="window.location.href='accueil.php'">Supprimer la recherche</button>
+        </form>
+        <p>Recherche effectuée : <?php echo $recherche; ?></p>
+
     </center>
     <!-- une grille contenant les images des films que l'on a acheté -->
     <div class="grid">
