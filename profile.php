@@ -14,7 +14,7 @@ if (isset($_GET['id_utilisateur'])) {
 <script>
 
     function modifierCode(id) {
-        alertify.prompt( 'Modifier le mot de passe', 'Entrez votre nouveau mot de passe', 'Mot de passe'
+        alertify.prompt( 'Chagement de mot de passe', 'Entrez votre nouveau mot de passe', 'Mot de passe'
                , function(evt, value) { alertify.success('Vous avez entré: ' + value + ' -' +id) }
                , function() { alertify.error('Annuler') });
         $.post("fonctions.php", {
@@ -23,7 +23,7 @@ if (isset($_GET['id_utilisateur'])) {
             code: value
         }, function (code_html, status) {
             alertify.success(code_html);
-        });
+        }).set('labels', {ok: 'Valider', cancel: 'Annuler'});
 
 
     }
