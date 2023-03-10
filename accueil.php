@@ -9,16 +9,60 @@ $liste_des_videos = recuperer_les_videos();
 
 <head>
     <style>
+        :root {
+            --primaire: #F9DBBB;
+            --secondaire: #4E6E81;
+            --bordure: #2E3840;
+        }
+
+        body {
+            background-color: var(--primaire);
+            color: black;
+        }
+
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(4, 1fr);
             grid-gap: 10px;
             grid-auto-rows: minmax(100px, auto);
+        }
+
+        .grid-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background-color: var(--secondaire);
+            border: 2px solid var(--bordure);
+            padding: 15px;
+            font-size: 30px;
+            border-radius: 10px;
+            height: 90%;
+        }
+
+        .title {
+            background-color: var(--secondaire);
+            border: 5px solid var(--bordure);
+            border-radius: 10px;
+            padding: 10px;
+            width: 50%;
+            font-size: 50px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        @media (max-width: 1375px) {
+            .grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         @media (max-width: 1000px) {
             .grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .title {
+                width: 90%;
             }
         }
 
@@ -27,28 +71,25 @@ $liste_des_videos = recuperer_les_videos();
                 grid-template-columns: repeat(1, 1fr);
             }
         }
-
-        .grid-item {
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 1px solid rgba(0, 0, 0, 0.8);
-            padding: 20px;
-            font-size: 30px;
-            text-align: center;
-        }
     </style>
 </head>
 
 <body>
+    <center>
+        <h1 class="title">
+            Movies DataBase & co
+        </h1>
+    </center>
     <!-- une grille contenant les images des films que l'on a acheté -->
     <div class="grid">
         <?php
-            foreach ($liste_des_videos as $une_video) {
-                echo '<a href="info_un_film.php?id_film=' . $une_video['id'] . '">';
-                echo '<div class="grid-item">';
-                echo '<img src="' . $une_video['image'] . '" alt="" width="75%">';
-                echo '</div>';
-                echo '</a>';
-            }
+        foreach ($liste_des_videos as $une_video) {
+            echo '<a href="info_un_film.php?id_film=' . $une_video['id'] . '">';
+            echo '<div class="grid-item">';
+            echo '<img src="' . $une_video['image'] . '" alt="" width="75%">';
+            echo '</div>';
+            echo '</a>';
+        }
         ?>
     </div>
 
