@@ -34,7 +34,6 @@
         .nav>.nav-header>.nav-title {
             display: inline-block;
             font-size: 22px;
-            color: #fff;
             padding: 10px 10px 10px 10px;
         }
 
@@ -151,7 +150,11 @@
 <body>
     <div class="nav">
         <input type="checkbox" id="nav-check">
-        <div class="nav-header"></div>
+        <div class="nav-header">
+            <div class="nav-title">
+                <a href="accueil.php" title="Accueil"><i class="fa-solid fa-home"></i></a>
+            </div>
+        </div>
         <div class="nav-btn">
             <label for="nav-check">
                 <span></span>
