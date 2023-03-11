@@ -1,6 +1,7 @@
 <?php
 $page = "Info film";
 require('config.php');
+require('nav.php');
 if (!isset($_GET['id_film'])) { ?>
     <script type='text/javascript'>alert("Aucun id de film n'est rentré !"); window.location.href = 'index.php';</script>
     <?php
@@ -11,7 +12,7 @@ $film = recuperer_les_videos()[$id_film];
 
 <script>
     function ajouter_un_film_au_panier(id_film, id_utilisateur) {
-        alertify.confirm('Confirmation', 'Voulez-vous vraiment ajouter ce film à votre panier?', function() {
+        alertify.confirm('Confirmation', 'Voulez-vous vraiment ajouter ce film à votre panier?', function () {
             $.ajax({
                 url: 'controler.php',
                 type: 'POST',
@@ -19,9 +20,9 @@ $film = recuperer_les_videos()[$id_film];
                 dataType: 'html',
                 success: function (code_html, status) {
                     nb = code_html.search(/Ok/i);
-                    if(nb !== -1){
+                    if (nb !== -1) {
                         alertify.success(code_html);
-                    }else{
+                    } else {
                         alertify.message(code_html);
                     }
                 }
@@ -29,15 +30,15 @@ $film = recuperer_les_videos()[$id_film];
             alertify.confirm().close();
         }, function () {
             alertify.error("L'opération a été annulée");
-        }).set('labels', {ok: 'Oui', cancel: 'Non'});
+        }).set('labels', { ok: 'Oui', cancel: 'Non' });
     }
     function vous_devez_etre_connecte() {
-        alertify.confirm('Connexion', 'Vous devez être connecté pour réaliser cette action', function() {
-            document.location.href="connexion.php";
+        alertify.confirm('Connexion', 'Vous devez être connecté pour réaliser cette action', function () {
+            document.location.href = "connexion.php";
             alertify.confirm().close();
         }, function () {
             alertify.error("vous n'êtes pas connecté !");
-        }).set('labels', {ok: 'Oui', cancel: 'Non'});
+        }).set('labels', { ok: 'Oui', cancel: 'Non' });
     }
 </script>
 
@@ -78,6 +79,7 @@ $film = recuperer_les_videos()[$id_film];
         .side-infos {
             float: right;
             margin-left: 20px;
+            margin-right: 70px;
             background-color: var(--secondaire);
             border: 5px solid var(--bordure);
             border-radius: 10px;
@@ -137,11 +139,11 @@ $film = recuperer_les_videos()[$id_film];
             <br><br>
             <center>
                 <?php
-                    if (isset($_SESSION['id'])) {
-                        echo "<button class='buy-btn' type='submit' onclick='ajouter_un_film_au_panier(" . $id_film . ", " . $_SESSION['id'] . ")'>Ajouter au panier <i class='fa-solid fa-cart-shopping'></i></button>";
-                    } else {
-                        echo "<button class='buy-btn' type='submit' onclick='vous_devez_etre_connecte()'>Ajouter au panier <i class='fa-solid fa-cart-shopping'></i></button>";
-                    }
+                if (isset($_SESSION['id'])) {
+                    echo "<button class='buy-btn' type='submit' onclick='ajouter_un_film_au_panier(" . $id_film . ", " . $_SESSION['id'] . ")'>Ajouter au panier <i class='fa-solid fa-cart-shopping'></i></button>";
+                } else {
+                    echo "<button class='buy-btn' type='submit' onclick='vous_devez_etre_connecte()'>Ajouter au panier <i class='fa-solid fa-cart-shopping'></i></button>";
+                }
                 ?>
             </center>
         </div>
