@@ -155,11 +155,9 @@ function supprimer_un_film_du_panier($id_film, $id_utilisateur)
             $tableau_panier[] = intval($un_id_film);
         }
     }
-    var_dump($tableau_panier);
     if (in_array($id_film, $tableau_panier)) {
         $tableau_panier = array_diff($tableau_panier, array($id_film));
         $panier = implode(",", $tableau_panier);
-        var_dump($panier);
         $query = "UPDATE `utilisateurs` SET `panier` = '" . $panier . "' WHERE `id` = '" . $id_utilisateur . "'";
         $res = mysqli_query($conn, $query);
         if ($res) {
