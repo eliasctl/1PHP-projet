@@ -26,6 +26,13 @@ switch ($action) {
         }
         echo $retour;
         break;
+    case 'supprimer_un_film_du_panier':
+        $retour = "Erreur de traitement !";
+        if (!empty($id_utilisateur) || !empty($id_film)) {
+            $retour = supprimer_un_film_du_panier($id_film, $id_utilisateur);
+        }
+        echo $retour;
+        break;
 
 
 }

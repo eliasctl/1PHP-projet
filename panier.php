@@ -6,7 +6,30 @@ require('nav.php');
 ?>
 
 <html lang="en">
-
+<script>
+    function supprimer_un_film_du_panier(id_film, id_utilisateur) {
+        alertify.confirm('Confirmation', 'Voulez-vous vraiment supprimer ce film de votre panier', function() {
+            $.ajax({
+                url: 'controler.php',
+                type: 'POST',
+                data: 'action=supprimer_un_film_du_panier&id_film=' + id_film + '&id_utilisateur=' + id_utilisateur,
+                dataType: 'html',
+                success: function (code_html, status) {
+                    nb = code_html.search(/Ok/i);
+                    if(nb !== -1){
+                        alertify.success(code_html);
+                    }else{
+                        alertify.message(code_html);
+                    }
+                }
+            });
+            alertify.confirm().close();
+            location.reload();
+        }, function () {
+            alertify.error("L'opération a été annulée");
+        }).set('labels', {ok: 'Oui', cancel: 'Non'});
+    }
+</script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -64,7 +87,7 @@ require('nav.php');
                 <tr>
                     <th>Titre</th>
                     <th>Prix</th>
-                    <th>Total</th>
+                    <th>Supprimer</th>
                 </tr>
                 <?php
                 $panier = recuperer_le_panier($_SESSION['id']);
@@ -74,13 +97,13 @@ require('nav.php');
                     echo '<tr>';
                     echo '<td>' . $film['titre'] . '</td>';
                     echo '<td>' . $film['prix'] . '€</td>';
+                    echo '<td><a onclick="supprimer_un_film_du_panier(' . $film['id'] . ', ' . $_SESSION['id'] . ')"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></a></td>';
                     echo '</tr>';
                 }
                 ?>
                 <tr>
-                    <td style="border: 0px"></td>
-                    <td style="border: 0px"></td>
-                    <td>
+                    <th>Total</th>
+                    <td colcolspan="">
                         <?php echo $total; ?>€
                     </td>
                 </tr>
