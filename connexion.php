@@ -31,7 +31,7 @@
 	}
 	?>
 	<form class="box" action="" method="post" name="login">
-		<h1 class="box-logo box-title"><a href="#">Movies DataBase & co</a></h1>
+		<h1 class="box-logo box-title"><a href="accueil.php" style="color: black;">Movies DataBase & co</a></h1>
 		<h1 class="box-title">Connexion</h1>
 		<input type="text" class="box-input" name="pseudo" placeholder="Nom d'utilisateur">
 		<input type="password" class="box-input" name="code" placeholder="Mot de passe">

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <body class="color1c242d">
 	<?php
 	$page = 'inscription';
@@ -33,7 +34,7 @@
 	} else {
 		?>
 		<form class="box" action="" method="post">
-			<h1 class="box-logo box-title"><a href="#">Movies DataBase & co</a></h1>
+			<h1 class="box-logo box-title"><a href="accueil.php" style="color: black;">Movies DataBase & co</a></h1>
 			<h1 class="box-title">S'inscrire</h1>
 			<input type="text" class="box-input" name="pseudo" placeholder="Nom d'utilisateur" required />
 			<input type="text" class="box-input" name="email" placeholder="Email" required />
