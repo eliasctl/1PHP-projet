@@ -168,7 +168,6 @@
             if (!empty($_SESSION['pseudo'])) {
                 if ($_SESSION['type'] === 'admin') {
                     echo '<a href="admin_add_user.php" title="Menu admin">add_User</a>'; // Ajout d'un utilisateur
-                    echo '<a href="admin_home.php" title="Menu admin">admin_home</a>'; // Page d'accueil admin
                     echo '<a href="admin_liste_films.php" title="Menu admin">admin_liste_films</a>'; // Liste des films
                     echo '<a href="admin_liste_utilisateurs.php" title="Menu admin">admin_liste_utilisateurs</a>'; // Liste des utilisateurs
                 }

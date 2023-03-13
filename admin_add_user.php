@@ -33,13 +33,13 @@
 		if ($res) {
 			echo "<div class='sucess'>
              <h3>L'utilisateur a été créée avec succés.</h3>
-             <p>Cliquez <a href='home.php'>ici</a> pour retourner à la page d'accueil</p>
+             <p>Cliquez <a href='accueil.php'>ici</a> pour retourner à la page d'accueil</p>
 			 </div>";
 		}
 	} else {
 		?>
 		<form class="box" action="" method="post">
-			<h1 class="box-logo box-title"><a href="https://ropenweb.fr">Ropenweb.fr</a></h1>
+			<h1 class="box-logo box-title"><a href="accueil.php">Home</a></h1>
 			<h1 class="box-title">Add user</h1>
 			<input type="text" class="box-input" name="username" placeholder="Nom d'utilisateur" required />
 			<input type="text" class="box-input" name="email" placeholder="Email" required />
