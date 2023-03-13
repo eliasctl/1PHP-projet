@@ -171,9 +171,8 @@
                     echo '<a href="admin_home.php" title="Menu admin">admin_home</a>'; // Page d'accueil admin
                     echo '<a href="admin_liste_films.php" title="Menu admin">admin_liste_films</a>'; // Liste des films
                     echo '<a href="admin_liste_utilisateurs.php" title="Menu admin">admin_liste_utilisateurs</a>'; // Liste des utilisateurs
-                } else {
-                    echo '<a href="profile.php" title="Profil"><i class="fa-solid fa-user"></i></a>'; // Profil
                 }
+                echo '<a href="profile.php" title="Profil"><i class="fa-solid fa-user"></i></a>'; // Profil
                 echo '<a href="panier.php" title="Panier"><i class="fa-solid fa-cart-shopping"></i></a>'; // Panier
                 echo '<a href="deconnexion.php" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></a>'; // Déconnexion
             } else {

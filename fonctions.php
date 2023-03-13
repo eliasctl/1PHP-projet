@@ -96,7 +96,7 @@ function recuperer_le_panier($id_utilisateur)
     $tableau_de_panier = array();
     foreach ($tableau_panier as $id_film) {
         $id_film = intval($id_film);
-        if ($id_film != 0){
+        if ($id_film != 0) {
             $query = "SELECT * FROM `videos` WHERE `id` = '" . $id_film . "'";
             $res = mysqli_query($conn, $query);
             $row = mysqli_fetch_assoc($res);
@@ -151,7 +151,7 @@ function supprimer_un_film_du_panier($id_film, $id_utilisateur)
     $tableau_panier_temp = explode(",", $panier);
     $tableau_panier = array();
     foreach ($tableau_panier_temp as $un_id_film) {
-        if ($un_id_film != 0){
+        if ($un_id_film != 0) {
             $tableau_panier[] = intval($un_id_film);
         }
     }
