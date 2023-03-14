@@ -167,16 +167,15 @@
             <?php
             if (!empty($_SESSION['pseudo'])) {
                 if ($_SESSION['type'] === 'admin') {
-                    echo '<a href="admin_add_user.php" title="Menu admin">add_User</a>'; // Ajout d'un utilisateur
-                    echo '<a href="admin_liste_films.php" title="Menu admin">admin_liste_films</a>'; // Liste des films
-                    echo '<a href="admin_liste_utilisateurs.php" title="Menu admin">admin_liste_utilisateurs</a>'; // Liste des utilisateurs
+                    echo '<a href="admin_liste_films.php" title="Admin liste film"><i class="fa-solid fa-screwdriver-wrench"></i> <i class="fa-solid fa-ticket"></i></a>'; // Liste des films
+                    echo '<a href="admin_liste_utilisateurs.php" title="Admin liste utilisateurs"><i class="fa-solid fa-screwdriver-wrench"></i> <i class="fa-solid fa-users"></i></a>'; // Liste des utilisateurs
                 }
                 echo '<a href="profile.php" title="Profil"><i class="fa-solid fa-user"></i></a>'; // Profil
                 echo '<a href="panier.php" title="Panier"><i class="fa-solid fa-cart-shopping"></i></a>'; // Panier
                 echo '<a href="deconnexion.php" title="Déconnexion"><i class="fa-solid fa-right-from-bracket"></i></a>'; // Déconnexion
             } else {
-                echo '<a href="connexion.php"><i class="fa-solid fa-link"></i></a>'; // Connexion
-                echo '<a href="inscription.php"><i class="fa-solid fa-user-plus"></i></a>'; // Inscription
+                echo '<a href="connexion.php" title="Connexion"><i class="fa-solid fa-link"></i></a>'; // Connexion
+                echo '<a href="inscription.php" title="Inscription"><i class="fa-solid fa-user-plus"></i></a>'; // Inscription
             }
             ?>
             &emsp;
