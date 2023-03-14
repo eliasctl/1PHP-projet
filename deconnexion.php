@@ -5,7 +5,7 @@ session_start();
 $_SESSION = array();
 // Détruire la session.
 if (session_destroy()) {
-	// Redirection vers la page de connexion
-	header("Location: connexion.php");
+	// Redirection vers la page d'accueil
+	header("Location: index.php");
 }
 ?>

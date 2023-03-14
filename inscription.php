@@ -1,12 +1,15 @@
 <?php
-$page = 'achats';
+$page = 'inscription';
 require('config.php');
 require('nav.php');
-?>
-
-<?php
 
 $AfficherFormulaire=1;
+if (isset($_SESSION['pseudo'])) {
+    echo "Vous êtes déjà connecter <a href='index.php'>cliquez-ici</a> !";
+    $AfficherFormulaire=0;
+    exit();
+}
+
 if(isset($_POST['pseudo'],$_POST['code'],$_POST['email'])){
     if (empty($_POST['pseudo']) || empty($_POST['code']) || empty($_POST['email'])) {
         echo "Veuillez remplir tous les champs.";
@@ -41,7 +44,7 @@ if($AfficherFormulaire==1){
     ?>
     <h1>Inscription</h1>
     <br/>
-    <form method="post" action="achats.php">
+    <form method="post" action="inscription.php">
         Email : <input type="text" name="email">
         <br />
         Pseudo : <input type="text" name="pseudo">
@@ -50,6 +53,8 @@ if($AfficherFormulaire==1){
         <br />
         <input type="submit" value="S'inscrire">
     </form>
+    <br/>
+    <a href="connexion.php">Se connecter</a>
     <?php
 }
 ?>

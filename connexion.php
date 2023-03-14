@@ -1,55 +1,50 @@
-<!DOCTYPE html>
-<html>
+<?php
+$page = 'connexion';
+require('config.php');
+require('nav.php');
 
-<body class="color1c242d">
-	<?php
-	$page = 'connexion';
-	require('config.php');
+$AfficherFormulaire=1;
+if (isset($_SESSION['pseudo'])) {
+    echo "Vous êtes déjà connecter <a href='index.php'>cliquez-ici</a> !";
+    $AfficherFormulaire=0;
+    exit();
+}
 
-	if (!empty($_SESSION['pseudo'])) {
-		header('Location: /');
-	}
+if (isset($_POST['post'])){
+    if (!isset($_POST['pseudo'], $_POST['code'])){
+        echo "Veuillez remplir tous les champs";
+    } else {
+        $Pseudo=htmlentities($_POST['pseudo'],ENT_QUOTES,"UTF-8");
+        $Code=hash('sha256', $_POST['code']);
+        $query="SELECT * FROM utilisateurs WHERE pseudo='".$Pseudo."' AND code='".$Code."'";
+        $result = mysqli_query($conn, $query) or die(mysql_error());
+        if(mysqli_num_rows($result)==1){
+            $row=mysqli_fetch_assoc($result);
+            $_SESSION['pseudo']=$row['pseudo'];
+            $_SESSION['id']=$row['id'];
+            $_SESSION['type']=$row['type'];
+            echo "Vous êtes bien connecter <a href='index.php'>cliquez-ici</a> !";
+            $AfficherFormulaire=0;
+            exit();
+        } else {
+            echo "Le pseudo ou le mot de passe est incorrect.";
+        }
+    }
+}
 
-	if (isset($_POST['pseudo'])) {
-		$pseudo = stripslashes($_REQUEST['pseudo']);
-		$pseudo = mysqli_real_escape_string($conn, $pseudo);
-		$code = stripslashes($_REQUEST['code']);
-		$code = mysqli_real_escape_string($conn, $code);
-		$query = "SELECT * FROM `utilisateurs` WHERE pseudo='$pseudo' and code='" . hash('sha256', $code) . "'";
-		$result = mysqli_query($conn, $query) or die(mysql_error());
-
-		if (mysqli_num_rows($result) == 1) {
-			$utilisateur = mysqli_fetch_assoc($result);
-			$_SESSION['pseudo'] = $pseudo;
-			$_SESSION['type'] = $utilisateur['type'];
-			$_SESSION['id'] = $utilisateur['id'];
-			// vérifier si l'utilisateur est un administrateur ou un utilisateur
-			header('Location: accueil.php');
-		} else {
-			$message = "Le nom d'utilisateur ou le mot de passe est incorrect.";
-		}
-	}
-	?>
-	<form class="box" action="" method="post" name="login">
-		<h1 class="box-logo box-title"><a href="accueil.php" style="color: black;">Movies DataBase & co</a></h1>
-		<h1 class="box-title">Connexion</h1>
-		<input type="text" class="box-input" name="pseudo" placeholder="Nom d'utilisateur">
-		<input type="password" class="box-input" name="code" placeholder="Mot de passe">
-		<input type="submit" value="Connexion " name="submit" class="box-button">
-		<p class="box-register">Vous êtes nouveau ici ?
-			<br>
-			<a href="inscription.php">S'inscrire</a>
-		</p>
-
-		<?php if (!empty($message)) {
-			echo "<p class='errorMessage'>" . $message . "</p>";
-		} ?>
-
-
-		<?php if (!empty($message)) {
-			echo "<p class='errorMessage'> " . $message . "</p>";
-		} ?>
-	</form>
-</body>
-
-</html>
+if($AfficherFormulaire==1){
+?>
+<h1>Connexion</h1>
+<br/>
+<form method="post" action="connexion.php">
+    Pseudo : <input type="text" name="pseudo">
+    <br />
+    Mot de passe : <input type="password" name="code">
+    <br />
+    <input type="submit" name="post" value="S'inscrire">
+</form>
+<br/>
+<a href="inscription.php">S'inscrire</a>
+<?php
+}
+?>

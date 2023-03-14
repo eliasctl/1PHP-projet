@@ -152,7 +152,7 @@
         <input type="checkbox" id="nav-check">
         <div class="nav-header">
             <div class="nav-title">
-                <a href="accueil.php" title="Accueil"><i class="fa-solid fa-home" style="color: #fff"></i></a>
+                <a href="index.php" title="Accueil"><i class="fa-solid fa-home" style="color: #fff"></i></a>
             </div>
         </div>
         <div class="nav-btn">
