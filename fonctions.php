@@ -62,6 +62,7 @@ function recuperer_les_utilisateurs()
     //                                  [code]
     //                                  [id]
     //                                  [panier]
+    //                                  [achats]
 
     global $conn;
     $query = "SELECT * FROM `utilisateurs`";
@@ -74,6 +75,7 @@ function recuperer_les_utilisateurs()
         $tableau_de_utilisateurs[$row['id']]['code'] = $row['code'];
         $tableau_de_utilisateurs[$row['id']]['id'] = $row['id'];
         $tableau_de_utilisateurs[$row['id']]['panier'] = $row['panier'];
+        $tableau_de_utilisateurs[$row['id']]['achats'] = $row['achats'];
     }
     return $tableau_de_utilisateurs;
 }
@@ -197,6 +199,65 @@ function recherche_liste_film($text)
         $tableau_de_recherche[$row['id']]['prix'] = $row['prix'];
     }
     return $tableau_de_recherche;
+}
+
+function achat_du_panier($id_utilisateur)
+{
+    // cette fonction permet de vider le panier
+    // Entrée: id de l'utilisateur
+    // Sortie: true si le panier a été vidé
+    //         false si le panier n'a pas pu être vidé
+    global $conn;
+    $query = "SELECT `panier` FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
+    $res = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($res);
+    $panier = $row['panier'];
+    $tableau_panier_temp = explode(",", $panier);
+    $tableau_panier = array();
+    var_dump($tableau_panier_temp);
+    foreach ($tableau_panier_temp as $un_id_film) {
+        if (intval($un_id_film) != 0) {
+            $tableau_panier[] = intval($un_id_film);
+        }
+    }
+    var_dump($tableau_panier);
+    $prix_panier = 0;
+    foreach ($tableau_panier as $un_id_film) {
+        $query = "SELECT `prix` FROM `videos` WHERE `id` = '" . $un_id_film . "'";
+        $res = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($res);
+        $prix_panier = $prix_panier + $row['prix'];
+    }
+    $query = "SELECT `argent` FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
+    $res = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($res);
+    $argent = $row['argent'];
+    if ($argent >= $prix_panier) {
+        $argent = $argent - $prix_panier;
+        $query = "UPDATE `utilisateurs` SET `argent` = '" . $argent . "' WHERE `id` = '" . $id_utilisateur . "'";
+        $res = mysqli_query($conn, $query);
+        if ($res) {
+            $query = "UPDATE `utilisateurs` SET `panier` = '' WHERE `id` = '" . $id_utilisateur . "'";
+            $res = mysqli_query($conn, $query);
+            $achats = implode(",", $tableau_panier);
+            $query = "SELECT `achats` FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
+            $res = mysqli_query($conn, $query);
+            $row = mysqli_fetch_assoc($res);
+            $achats = $achats . "," . $row['achats'];
+            $query = "UPDATE `utilisateurs` SET `achats` = '" . $achats . "' WHERE `id` = '" . $id_utilisateur . "'";
+            $res = mysqli_query($conn, $query);
+            if ($res) {
+                echo "Ok! Le panier a été vidé";
+            } else {
+                echo "Une erreur est survenue";
+            }
+        } else {
+            echo "Une erreur est survenue";
+        }
+    } else {
+        echo "Vous n'avez pas assez d'argent";
+    }
+
 }
 
 ?>
