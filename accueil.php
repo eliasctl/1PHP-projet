@@ -61,8 +61,12 @@ if (!empty($_GET['recherche'])) {
             font-family: 'Courier New', Courier, monospace;
         }
 
+        a {
+            filter: grayscale(1);
+        }
+
         .a:hover {
-            scale: 1.5;
+            filter: grayscale(0);
         }
 
         /* css de la bare de recherche */

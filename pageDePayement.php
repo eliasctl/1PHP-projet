@@ -1,3 +1,9 @@
+<?php
+$page = 'panier';
+require('config.php');
+require('nav.php');
+?>
+
 <html lang="en">
 
 <head>
