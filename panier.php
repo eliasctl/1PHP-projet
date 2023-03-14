@@ -8,7 +8,7 @@ require('nav.php');
 <html lang="en">
 <script>
     function supprimer_un_film_du_panier(id_film, id_utilisateur) {
-        alertify.confirm('Confirmation', 'Voulez-vous vraiment supprimer ce film de votre panier', function() {
+        alertify.confirm('Confirmation', 'Voulez-vous vraiment supprimer ce film de votre panier', function () {
             $.ajax({
                 url: 'controler.php',
                 type: 'POST',
@@ -16,9 +16,9 @@ require('nav.php');
                 dataType: 'html',
                 success: function (code_html, status) {
                     nb = code_html.search(/Ok/i);
-                    if(nb !== -1){
+                    if (nb !== -1) {
                         alertify.success(code_html);
-                    }else{
+                    } else {
                         alertify.message(code_html);
                     }
                 }
@@ -27,9 +27,10 @@ require('nav.php');
             location.reload();
         }, function () {
             alertify.error("L'opération a été annulée");
-        }).set('labels', {ok: 'Oui', cancel: 'Non'});
+        }).set('labels', { ok: 'Oui', cancel: 'Non' });
     }
 </script>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -75,6 +76,16 @@ require('nav.php');
             background-color: var(--secondaire);
             color: black;
         }
+
+        .payement {
+            background-color: var(--secondaire);
+            border: 5px solid var(--bordure);
+            border-radius: 10px;
+            font-size: 40px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+        }
     </style>
 </head>
 
@@ -109,6 +120,8 @@ require('nav.php');
                 </tr>
         </center>
     </div>
+    <!-- bouton pour valider le pannier -->
+    <a href="pageDePayement.php"><button class="payement">Valider le panier</button></a>
 </body>
 
 </html>
