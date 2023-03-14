@@ -38,7 +38,7 @@
 		}
 	} else {
 		?>
-		<form class="box" action="" method="post">
+		<form class="box" action="accueil.php" method="post">
 			<h1 class="box-logo box-title"><a href="accueil.php">Home</a></h1>
 			<h1 class="box-title">Add user</h1>
 			<input type="text" class="box-input" name="username" placeholder="Nom d'utilisateur" required />

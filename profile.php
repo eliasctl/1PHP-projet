@@ -18,8 +18,51 @@ if (isset($_GET['id_utilisateur'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
-</head>
 
+    <style>
+        :root {
+            --primaire: #F9DBBB;
+            --secondaire: #4E6E81;
+            --bordure: #2E3840;
+        }
+
+        body {
+            background-color: var(--primaire);
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .main-box {
+            width: 70%;
+            height: 40%;
+            background-color: var(--secondaire);
+            color: white;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: space-evenly;
+            align-items: center;
+            border: 3px solid var(--bordure);
+            border-radius: 10px;
+        }
+
+        .pp {
+            font-size: 200px;
+        }
+
+        .mdp {
+            background-color: var(--primaire);
+            border: 2px solid var(--bordure);
+            border-radius: 5px;
+            font-size: 20px;
+        }
+
+        .mdp:hover {
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
 
 <script>
     function modifierCode(id) {
@@ -36,31 +79,26 @@ if (isset($_GET['id_utilisateur'])) {
     }
 </script>
 
-
 <body>
     <center>
-        <h1><i class="fa-solid fa-user fa-2xl"></i></h1>
-        <br>
-        <h1>Mon Profil</h1>
-        <h2>Pseudo:
-            <?php echo $utilisateur['pseudo']; ?>
-        </h2>
-        <h2>Email:
-            <?php echo $utilisateur['email']; ?>
-        </h2>
-        <button onclick="modifierCode(<?php echo $utilisateur['id']; ?>)">Test</button>
-
-        <?php
-        if ($_SESSION['type'] === 'admin') {
-            echo "<h2>Type: " . $utilisateur['type'] . "</h2>";
-        }
-        ?>
-        <!-- fait une zone de texte avec un bouton qui modifie une ligne sql -->
-        <form action="profile.php" method="post">
-            <input type="hidden" name="id_utilisateur" value="<?php echo $utilisateur['id']; ?>">
-            <input type="hidden" name="action" value="modifier">
-            <input type="password" name="password" placeholder="Nouveau mot de passe">
-            <input type="submit" value="Modifier">
-        </form>
+        <div class="main-box">
+            <i class="fa-solid fa-user fa-2xl pp"></i>
+            <div class="infos">
+                <h1>
+                    <?php echo $utilisateur['pseudo'] ?>
+                </h1>
+                <h2>
+                    <?php echo $utilisateur['email']; ?>
+                </h2>
+                <?php
+                if ($_SESSION['type'] === 'admin') {
+                    echo "<h2>Type: " . $utilisateur['type'] . "</h2>";
+                }
+                ?>
+                <button class="mdp" onclick="modifierCode(<?php echo $utilisateur['id']; ?>)">
+                    Modifier mon mot de passe
+                </button>
+            </div>
+        </div>
     </center>
 </body>
