@@ -43,7 +43,18 @@ if($AfficherFormulaire==1){
     <br />
     <input type="submit" name="post" value="S'inscrire">
 </form>
-<br/>
+Se connecter comme :
+<form method="post" action="connexion.php">
+    <input type="text" name="pseudo" value="user" style="display: none">
+    <input type="password" name="code" value="user" style="display: none">
+    <input type="submit" name="post" value="user">
+</form>
+ou
+<form method="post" action="connexion.php">
+    <input type="text" name="pseudo" value="admin" style="display: none">
+    <input type="password" name="code" value="admin" style="display: none">
+    <input type="submit" name="post" value="admin">
+</form>
 <a href="inscription.php">S'inscrire</a>
 <?php
 }
