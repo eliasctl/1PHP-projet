@@ -63,6 +63,7 @@ function recuperer_les_utilisateurs()
     //                                  [id]
     //                                  [panier]
     //                                  [achats]
+    //                                  [argent]
 
     global $conn;
     $query = "SELECT * FROM `utilisateurs`";
@@ -76,6 +77,7 @@ function recuperer_les_utilisateurs()
         $tableau_de_utilisateurs[$row['id']]['id'] = $row['id'];
         $tableau_de_utilisateurs[$row['id']]['panier'] = $row['panier'];
         $tableau_de_utilisateurs[$row['id']]['achats'] = $row['achats'];
+        $tableau_de_utilisateurs[$row['id']]['argent'] = $row['argent'];
     }
     return $tableau_de_utilisateurs;
 }

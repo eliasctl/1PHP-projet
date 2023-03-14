@@ -89,6 +89,9 @@ if (isset($_GET['id_utilisateur'])) {
                 </h1>
                 <h2>
                     <?php echo $utilisateur['email']; ?>
+                    <br>
+                    <br>
+                    <i class="fa-solid fa-wallet"></i> <?php echo $utilisateur['argent']."€"; ?>
                 </h2>
                 <?php
                 if ($_SESSION['type'] === 'admin') {
