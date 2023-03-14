@@ -1,51 +1,55 @@
-<!DOCTYPE html>
-<html>
+<?php
+$page = 'achats';
+require('config.php');
+require('nav.php');
+?>
 
-<body class="color1c242d">
-	<?php
-	$page = 'inscription';
-	require('config.php');
+<?php
 
-	if (isset($_SESSION['pseudo'])) {
-		header("Location: index.php");
-	}
-
-	if (isset($_REQUEST['pseudo'], $_REQUEST['email'], $_REQUEST['code'])) {
-		// récupérer le nom d'utilisateur et supprimer les antislashes ajoutés par le formulaire
-		$pseudo = stripslashes($_REQUEST['pseudo']);
-		$pseudo = mysqli_real_escape_string($conn, $pseudo);
-		// récupérer l'email et supprimer les antislashes ajoutés par le formulaire
-		$email = stripslashes($_REQUEST['email']);
-		$email = mysqli_real_escape_string($conn, $email);
-		// récupérer le mot de passe et supprimer les antislashes ajoutés par le formulaire
-		$code = stripslashes($_REQUEST['code']);
-		$code = mysqli_real_escape_string($conn, $code);
-
-		$query = "INSERT into `utilisateurs` (pseudo, email, type, code)
-				VALUES ('$pseudo', '$email', 'user', '" . hash('sha256', $code) . "')";
-		$res = mysqli_query($conn, $query);
-
-		if ($res) {
-			echo "<center><div class='sucess'>
-             <h3>Vous êtes inscrit avec succès.</h3>
-             <p>Cliquez ici pour vous <a href='connexion.php'>connecter</a></p>
-			 </div></center>";
-		}
-	} else {
-		?>
-		<form class="box" action="" method="post">
-			<h1 class="box-logo box-title"><a href="accueil.php" style="color: black;">Movies DataBase & co</a></h1>
-			<h1 class="box-title">S'inscrire</h1>
-			<input type="text" class="box-input" name="pseudo" placeholder="Nom d'utilisateur" required />
-			<input type="text" class="box-input" name="email" placeholder="Email" required />
-			<input type="password" class="box-input" name="code" placeholder="Mot de passe" required />
-			<input type="submit" name="submit" value="S'inscrire" class="box-button" />
-			<p class="box-register">Déjà inscrit ?
-				<br>
-				<a href="connexion.php">Connectez-vous ici</a>
-			</p>
-		</form>
-	<?php } ?>
-</body>
-
-</html>
+$AfficherFormulaire=1;
+if(isset($_POST['pseudo'],$_POST['code'],$_POST['email'])){
+    if (empty($_POST['pseudo']) || empty($_POST['code']) || empty($_POST['email'])) {
+        echo "Veuillez remplir tous les champs.";
+    } else {
+        $Pseudo=htmlentities($_POST['pseudo'],ENT_QUOTES,"UTF-8");
+        $Email=htmlentities($_POST['email'],ENT_QUOTES,"UTF-8");
+        $Code=hash('sha256', $_POST['code']);
+        if(!preg_match("#^[a-z0-9]+$#",$Pseudo)){
+            echo "Le Pseudo doit être renseigné en lettres minuscules sans accents, sans caractères spéciaux.";
+        } elseif(strlen($Pseudo)<3){
+            echo "Le pseudo est trop court, il doit faire au moins 3 caractères.";
+        } elseif(!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#",$Email)){
+            echo "L'adresse email n'est pas valide.";
+        } elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM utilisateurs WHERE email='".$Email."'"))==1){
+            echo "Cette email est déjà utilisé.";
+        } elseif(strlen($Pseudo)>25){
+            echo "Le pseudo est trop long, il dépasse 25 caractères.";
+        } elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM utilisateurs WHERE pseudo='".$Pseudo."'"))==1){
+            echo "Ce pseudo est déjà utilisé.";
+        } else {
+            if(!mysqli_query($conn,"INSERT INTO utilisateurs SET pseudo='".$Pseudo."', code='".$Code."', email='".$Email."', type='user'")){
+                echo "Une erreur s'est produite: ".mysqli_error($conn);
+            } else {
+                echo "Vous êtes inscrit avec succès!";
+                echo "Cliquez ici pour vous <a href='connexion.php'>connecter</a>";
+                $AfficherFormulaire=0;
+            }
+        }
+    }
+}
+if($AfficherFormulaire==1){
+    ?>
+    <h1>Inscription</h1>
+    <br/>
+    <form method="post" action="achats.php">
+        Email : <input type="text" name="email">
+        <br />
+        Pseudo : <input type="text" name="pseudo">
+        <br />
+        Mot de passe : <input type="password" name="code">
+        <br />
+        <input type="submit" value="S'inscrire">
+    </form>
+    <?php
+}
+?>
