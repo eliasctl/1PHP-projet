@@ -46,6 +46,94 @@ if (isset($_GET['id_utilisateur'])) {
             border-radius: 10px;
         }
 
+        .achats {
+            width: 70%;
+            background-color: var(--secondaire);
+            border: 3px solid var(--bordure);
+            border-radius: 10px;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        /* de la  */
+
+        .titre {
+            width: 100%;
+            background-color: var(--bordure);
+            border-radius: 10px 10px 0px 0px;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .titre h1 {
+            font-size: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background-color: var(--bordure);
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+        }
+
+        /* td {
+            background-color: var(--secondaire);
+            color: white;
+            font-size: 20px;
+            padding: 10px;
+        } */
+
+        .achat-infos {
+            background-color: var(--bordure);
+            color: white;
+            font-size: 20px;
+        }
+
+        .infos {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        tr {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        td,
+        th {
+            width: 33%;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+        }
+
+        td>a {
+            text-decoration: none;
+            color: white;
+        }
+
         .pp {
             font-size: 200px;
         }
@@ -101,7 +189,8 @@ if (isset($_GET['id_utilisateur'])) {
                     <?php echo $utilisateur['email']; ?>
                     <br>
                     <br>
-                    <i class="fa-solid fa-wallet"></i> <?php echo $utilisateur['argent']."€"; ?>
+                    <i class="fa-solid fa-wallet"></i>
+                    <?php echo $utilisateur['argent'] . "€"; ?>
                 </h2>
                 <?php
                 if ($_SESSION['type'] === 'admin') {
@@ -115,10 +204,12 @@ if (isset($_GET['id_utilisateur'])) {
         </div>
         <br>
         <br>
-        <div class="main-box">
-            <h1>Historique des achats</h1>
+        <div class="achats">
+            <div class="titre">
+                <h1>Historique des achats</h1>
+            </div>
             <table>
-                <tr>
+                <tr class="achat-infos">
                     <th>Titre</th>
                     <th>Image</th>
                     <th>Télécharger</th>
@@ -126,7 +217,7 @@ if (isset($_GET['id_utilisateur'])) {
                 <?php
                 $achats = recuperer_les_achats($utilisateur['id']);
                 foreach ($achats as $un_film) {
-                    echo "<tr>";
+                    echo "<tr class'achat-content'>";
                     echo "<td><a href='info_un_film.php?id_film=" . $un_film['id'] . "'>" . $un_film['titre'] . "</a></td>";
                     echo "<td><img src='" . $un_film['image'] . "' width='100px' height='100px'></td>";
                     echo "<td><a href='videos/" . $un_film['telechargement'] . ".mp4' download><i class='fa-solid fa-download'></i></a></td>";
