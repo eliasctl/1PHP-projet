@@ -113,7 +113,28 @@ if (isset($_GET['id_utilisateur'])) {
                 </button>
             </div>
         </div>
+        <br>
+        <br>
+        <div class="main-box">
+            <h1>Historique des achats</h1>
+            <table>
+                <tr>
+                    <th>Titre</th>
+                    <th>Image</th>
+                    <th>Télécharger</th>
+                </tr>
+                <?php
+                $achats = recuperer_les_achats($utilisateur['id']);
+                foreach ($achats as $un_film) {
+                    echo "<tr>";
+                    echo "<td><a href='info_un_film.php?id_film=" . $un_film['id'] . "'>" . $un_film['titre'] . "</a></td>";
+                    echo "<td><img src='" . $un_film['image'] . "' width='100px' height='100px'></td>";
+                    echo "<td><a href='videos/" . $un_film['telechargement'] . ".mp4' download><i class='fa-solid fa-download'></i></a></td>";
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+        </div>
     </center>
-    <br>
 
 </body>

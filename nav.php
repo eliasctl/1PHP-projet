@@ -72,13 +72,6 @@
                 <a href="index.php" title="Accueil"><i class="fa-solid fa-home" style="color: #fff"></i></a>
             </div>
         </div>
-        <div class="nav-btn">
-            <label for="nav-check">
-                <span></span>
-                <span></span>
-                <span></span>
-            </label>
-        </div>
 
         <div class="nav-links">
             <?php
