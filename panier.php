@@ -20,11 +20,11 @@ require('nav.php');
                         alertify.success(code_html);
                     } else {
                         alertify.message(code_html);
+                        location.reload();
                     }
                 }
             });
             alertify.confirm().close();
-            location.reload();
         }, function () {
             alertify.error("L'opération a été annulée");
         }).set('labels', { ok: 'Oui', cancel: 'Non' });
@@ -40,6 +40,7 @@ require('nav.php');
                     nb = code_html.search(/Ok/i);
                     if (nb !== -1) {
                         alertify.success(code_html);
+                        location.reload();
                     } else {
                         alertify.message(code_html);
                     }

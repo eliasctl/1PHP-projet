@@ -200,6 +200,14 @@ function recherche_liste_film($text)
         $tableau_de_recherche[$row['id']]['image'] = $row['image'];
         $tableau_de_recherche[$row['id']]['prix'] = $row['prix'];
     }
+    $query = "SELECT * FROM `videos` WHERE `cathegorie` LIKE '%" . $text . "%'";
+    $res = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_assoc($res)) {
+        $tableau_de_recherche[$row['id']]['id'] = $row['id'];
+        $tableau_de_recherche[$row['id']]['titre'] = $row['titre'];
+        $tableau_de_recherche[$row['id']]['image'] = $row['image'];
+        $tableau_de_recherche[$row['id']]['prix'] = $row['prix'];
+    }
     return $tableau_de_recherche;
 }
 
@@ -216,13 +224,11 @@ function achat_du_panier($id_utilisateur)
     $panier = $row['panier'];
     $tableau_panier_temp = explode(",", $panier);
     $tableau_panier = array();
-    var_dump($tableau_panier_temp);
     foreach ($tableau_panier_temp as $un_id_film) {
         if (intval($un_id_film) != 0) {
             $tableau_panier[] = intval($un_id_film);
         }
     }
-    var_dump($tableau_panier);
     $prix_panier = 0;
     foreach ($tableau_panier as $un_id_film) {
         $query = "SELECT `prix` FROM `videos` WHERE `id` = '" . $un_id_film . "'";
