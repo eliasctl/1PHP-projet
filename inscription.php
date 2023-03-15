@@ -4,7 +4,7 @@ require('config.php');
 require('nav.php');
 ?>
 
-<html lang="FR">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">

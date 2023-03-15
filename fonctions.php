@@ -262,4 +262,51 @@ function achat_du_panier($id_utilisateur)
 
 }
 
+function recuperer_les_achats($id_utilisateur)
+{
+    // cette fonction permet de récupérer les achats d'un utilisateur
+    // Entrée: id de l'utilisateur
+    // Sortie: tableau_achats[id][id]
+    //                         [titre]
+    //                         [image]
+    //                         [telechargement]
+    global $conn;
+    $query = "SELECT `achats` FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
+    $res = mysqli_query($conn, $query);
+    $row = mysqli_fetch_assoc($res);
+    $achats = $row['achats'];
+    $tableau_achats_temp = explode(",", $achats);
+    $tableau_achats = array();
+    foreach ($tableau_achats_temp as $un_id_film) {
+        if (intval($un_id_film) != 0) {
+            $tableau_achats[] = intval($un_id_film);
+        }
+    }
+    $tableau_achats = array_unique($tableau_achats);
+    $tableau_achats = array_reverse($tableau_achats);
+    $tableau_achats_final = array();
+    foreach ($tableau_achats as $un_id_film) {
+        $query = "SELECT * FROM `videos` WHERE `id` = '" . $un_id_film . "'";
+        $res = mysqli_query($conn, $query);
+        $row = mysqli_fetch_assoc($res);
+        $tableau_achats_final[$row['id']]['id'] = $row['id'];
+        $tableau_achats_final[$row['id']]['titre'] = $row['titre'];
+        $tableau_achats_final[$row['id']]['image'] = $row['image'];
+        $tableau_achats_final[$row['id']]['telechargement'] = $row['telechargement'];
+    }
+    return $tableau_achats_final;
+}
+
+function changer_de_code($id_utilisateur, $nouveau_code)
+{
+    $Code = hash('sha256', $nouveau_code);
+    global $conn;
+    $query = "UPDATE `utilisateurs` SET `code` = '" . $Code . "' WHERE `id` = '" . $id_utilisateur . "'";
+    $res = mysqli_query($conn, $query);
+    if ($res) {
+        echo "Ok! Le code a été changé";
+    } else {
+        echo "Une erreur est survenue";
+    }
+}
 ?>

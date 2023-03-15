@@ -40,6 +40,7 @@ doit_etre_admin();
                 <th>Pseudo</th>
                 <th>Mail</th>
                 <th>Code Crypté</th>
+                <th>Voir son profil</th>
             </tr>
         </thead>
         <tbody>
@@ -51,6 +52,7 @@ doit_etre_admin();
                 echo "<td>" . $utilisateur['pseudo'] . "</td>";
                 echo "<td>" . $utilisateur['email'] . "</td>";
                 echo "<td>" . $utilisateur['code'] . "</td>";
+                echo "<td><a href='profile.php?id_utilisateur=" . $id . "'><i class='fa-solid fa-user'></i></a></td>";
                 echo "</tr>";
             }
             ?>

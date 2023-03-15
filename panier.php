@@ -29,6 +29,27 @@ require('nav.php');
             alertify.error("L'opération a été annulée");
         }).set('labels', { ok: 'Oui', cancel: 'Non' });
     }
+    function payer(id_utilisateur) {
+        alertify.confirm('Confirmation', 'Voulez-vous valider votre panier? Cette action vous débitera la somme si vous avez le nécessaire pour payer le panier!', function () {
+            $.ajax({
+                url: 'controler.php',
+                type: 'POST',
+                data: 'action=payer&id_utilisateur=' + id_utilisateur,
+                dataType: 'html',
+                success: function (code_html, status) {
+                    nb = code_html.search(/Ok/i);
+                    if (nb !== -1) {
+                        alertify.success(code_html);
+                    } else {
+                        alertify.message(code_html);
+                    }
+                }
+            });
+            alertify.confirm().close();
+        }, function () {
+            alertify.error("L'opération a été annulée");
+        }).set('labels', { ok: 'Oui', cancel: 'Non' });
+    }
 </script>
 
 <head>
@@ -121,7 +142,7 @@ require('nav.php');
         </center>
     </div>
     <!-- bouton pour valider le pannier -->
-    <a href="pageDePayement.php"><button class="payement">Valider le panier</button></a>
+    <button class="payement" onclick="payer(<?php echo $_SESSION['id']?>)">Valider le panier</button>
 </body>
 
 </html>

@@ -66,15 +66,25 @@ if (isset($_GET['id_utilisateur'])) {
 
 <script>
     function modifierCode(id) {
-        alertify.prompt('Chagement de mot de passe', 'Entrez votre nouveau mot de passe', 'Mot de passe'
-            , function (evt, value) { alertify.success('Vous avez entré: ' + value + ' -' + id) }
-            , function () { alertify.error('Annuler') });
-        $.post("fonctions.php", {
-            action: "modifierCode",
-            id: id,
-            code: value
-        }, function (code_html, status) {
-            alertify.success(code_html);
+        alertify.prompt('Chagement de mot de passe', 'Entrez votre nouveau mot de passe', 'Mot de passe', function (evt, value) {
+            //alertify.success(value);
+            $.ajax({
+                url: 'controler.php',
+                type: 'POST',
+                data: 'action=changer_de_code&id_utilisateur=' + id + '&code=' + value,
+                dataType: 'html',
+                success: function (code_html, status) {
+                    nb = code_html.search(/Ok/i);
+                    if (nb !== -1) {
+                        alertify.success(code_html);
+                    } else {
+                        alertify.message(code_html);
+                    }
+                }
+            });
+            alertify.confirm().close();
+        }, function () {
+            alertify.error("L'opération a été annulée");
         }).set('labels', { ok: 'Valider', cancel: 'Annuler' });
     }
 </script>
@@ -104,4 +114,6 @@ if (isset($_GET['id_utilisateur'])) {
             </div>
         </div>
     </center>
+    <br>
+
 </body>
