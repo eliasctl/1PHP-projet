@@ -141,10 +141,10 @@ if (!empty($_GET['recherche'])) {
         <h1 class="title">
             Movies DataBase & co
         </h1>
-        <form action="accueil.php" method="get">
+        <form action="index.php" method="get">
             <input type="text" name="recherche" placeholder="Rechercher un film">
             <input type="submit" value="Rechercher">
-            <button type="button" onclick="window.location.href='accueil.php'">Effacer</button>
+            <button type="button" onclick="window.location.href='index.php'">Effacer</button>
         </form>
 
     </center>
