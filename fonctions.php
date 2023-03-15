@@ -96,6 +96,9 @@ function recuperer_le_panier($id_utilisateur)
     $res = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($res);
     $panier = $row['panier'];
+    if ($panier == "") {
+        return array();
+    }
     $tableau_panier = explode(",", $panier);
     $tableau_de_panier = array();
     foreach ($tableau_panier as $id_film) {
@@ -280,6 +283,9 @@ function recuperer_les_achats($id_utilisateur)
     $query = "SELECT `achats` FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
     $res = mysqli_query($conn, $query);
     $row = mysqli_fetch_assoc($res);
+    if ($row['achats'] == "") {
+        return array();
+    }
     $achats = $row['achats'];
     $tableau_achats_temp = explode(",", $achats);
     $tableau_achats = array();
@@ -311,6 +317,18 @@ function changer_de_code($id_utilisateur, $nouveau_code)
     $res = mysqli_query($conn, $query);
     if ($res) {
         echo "Ok! Le code a été changé";
+    } else {
+        echo "Une erreur est survenue";
+    }
+}
+
+function supprimer_un_utilisateur($id_utilisateur)
+{
+    global $conn;
+    $query = "DELETE FROM `utilisateurs` WHERE `id` = '" . $id_utilisateur . "'";
+    $res = mysqli_query($conn, $query);
+    if ($res) {
+        echo "Ok! L'utilisateur a été supprimé";
     } else {
         echo "Une erreur est survenue";
     }
