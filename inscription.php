@@ -21,6 +21,8 @@ require('nav.php');
 
         body {
             background-color: var(--primaire);
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
         }
 
         h1 {
@@ -59,8 +61,6 @@ require('nav.php');
             text-decoration: none;
             color: var(--bordure);
             font-size: 20px;
-            font-family: 'Roboto', sans-serif;
-            font-weight: 700;
         }
 
         a:hover {
