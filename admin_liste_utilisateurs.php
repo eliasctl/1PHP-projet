@@ -63,6 +63,31 @@ doit_etre_admin();
             }, function () {
                 alertify.error("L'opération a été annulée");
             }).set('labels', { ok: 'Oui', cancel: 'Non' });
+        };
+        function modifierArgent(id, argent) {
+            alertify.prompt('Chagement de mot de passe', 'Entrez votre nouveau mot de passe', argent, function (evt, value) {
+                $.ajax({
+                    url: 'backofice_ajout_argent.php',
+                    type: 'POST',
+                    data: 'codedeconnexion=rasppi25ukl€eliwill20322jkhqz!84865&id=' + id + '&somme=' + value,
+                    dataType: 'html',
+                    success: function (code_html, status) {
+                        nb = code_html.search(/Ok/i);
+                        if (nb !== -1) {
+                            alertify.success(code_html);
+                            alertify.success("Rechargement de la page dans 2 secondes");
+                            setTimeout(function () {
+                                location.reload();
+                            }, 2000);
+                        } else {
+                            alertify.message(code_html);
+                        }
+                    }
+                });
+                alertify.confirm().close();
+            }, function () {
+                alertify.error("L'opération a été annulée");
+            }).set('labels', { ok: 'Valider', cancel: 'Annuler' });
         }
     </script>
     <table id="utilisateurs" class="display" style="width:100%">
@@ -79,25 +104,6 @@ doit_etre_admin();
             </tr>
         </thead>
         <tbody>
-            <!-- Possibilité d'ajout utilisateur
-            <tr>
-                <td></td>
-                <td>
-                    <form action="controler.php" method="post">
-                        <input type="hidden" name="action" value="ajouter_un_utilisateur">
-                        <select name="type">
-                            <option value="user">User</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                </td>
-                <td><input type="text" name="pseudo" placeholder="Pseudo"></td>
-                <td><input type="text" name="email" placeholder="Email"></td>
-                <td><input type="text" name="argent" placeholder="Argent" value=0></td>
-                <td><input type="text" name="code" placeholder="Code non crypté"></td>
-                <td><button type="submit"><i class="fa-solid fa-plus"></i></button></td>
-                </form>
-            </tr> -->
-
             <?php
             foreach (recuperer_les_utilisateurs() as $id => $utilisateur) {
                 echo "<tr>";
@@ -105,8 +111,7 @@ doit_etre_admin();
                 echo "<td>" . $utilisateur['type'] . "</td>";
                 echo "<td>" . $utilisateur['pseudo'] . "</td>";
                 echo "<td>" . $utilisateur['email'] . "</td>";
-                // echo "<td><form action='controler.php' method='post'><input type='text' name='argent' placeholder='Argent' value=".$utilisateur['argent']."></td>";
-                echo "<td>" . $utilisateur['argent'] . "</td>";
+                echo "<td><button onclick='modifierArgent(" . $id . ", " . $utilisateur['argent'] . ")'>" . $utilisateur['argent'] . "</button></td>";
                 echo "<td>" . $utilisateur['code'] . "</td>";
                 echo "<td><a href='profile.php?id_utilisateur=" . $id . "'><i class='fa-solid fa-user'></i></a></td>";
                 echo "<td><a href='#' onclick='supprimer_un_utilisateur(" . $id . ")'><i class='fa-solid fa-trash'></i></a></td>";

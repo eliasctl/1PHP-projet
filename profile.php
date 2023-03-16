@@ -11,7 +11,7 @@ if (isset($_GET['id_utilisateur'])) {
 }
 ?>
 
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -169,6 +169,10 @@ if (isset($_GET['id_utilisateur'])) {
     function modifierCode(id) {
         alertify.prompt('Chagement de mot de passe', 'Entrez votre nouveau mot de passe', 'Mot de passe', function (evt, value) {
             //alertify.success(value);
+            if (value.length < 5) {
+                alertify.error("Le mot de passe doit contenir au moins 5 caractères");
+                return;
+            }
             $.ajax({
                 url: 'controler.php',
                 type: 'POST',

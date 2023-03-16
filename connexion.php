@@ -4,13 +4,12 @@ require('config.php');
 require('nav.php');
 ?>
 
-<html lang="FR">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription </title>
 
     <style>
         :root {
@@ -99,8 +98,8 @@ require('nav.php');
         }
 
         .methode-con {
-            /* display: flex; */
-            display: none;
+            /* display: none; */
+            display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -178,7 +177,7 @@ require('nav.php');
                     <input type="submit" name="post" value="Se connecter">
                 </form>
                 <div class="methode-con">
-                    Se connecter comme :
+                    Se connecter en tant que :
                     <div class="methode-con-small">
                         <form class="methode-con-btn" method="post" action="connexion.php">
                             <input type="text" name="pseudo" value="user" style="display: none">
