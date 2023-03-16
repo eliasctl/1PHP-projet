@@ -99,8 +99,8 @@ require('nav.php');
         }
 
         .methode-con {
-            display: flex;
-            /* display: none; */
+            /* display: flex; */
+            display: none;
             flex-direction: column;
             align-items: center;
             justify-content: center;

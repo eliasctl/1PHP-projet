@@ -23,6 +23,7 @@ doit_etre_admin();
     <script type="text/javascript">
         $(document).ready(function () {
             $('#utilisateurs').DataTable({
+                scrollX: true,
                 "paging": false,
                 "info": false,
                 "language": {
@@ -32,37 +33,37 @@ doit_etre_admin();
             });
         });
         function supprimer_un_utilisateur(id_utilisateur) {
-        alertify.confirm('Confirmation', 'Voulez-vous supprimer cette utilisateur? ', function () {
-            if (id_utilisateur == 1) {
-                alertify.error("Vous ne pouvez pas supprimer l'administrateur");
-                return;
-            } else if (id_utilisateur == 2) {
-                alertify.error("Vous ne pouvez pas supprimer le compte de l'utilisateur test, il s'agit d'une base d'un site de test");
-                return;
-            }
-            $.ajax({
-                url: 'controler.php',
-                type: 'POST',
-                data: 'action=supprimer_un_utilisateur&id_utilisateur=' + id_utilisateur,
-                dataType: 'html',
-                success: function (code_html, status) {
-                    nb = code_html.search(/Ok/i);
-                    if (nb !== -1) {
-                        alertify.success(code_html);
-                        alertify.success("Rechargement de la page dans 3 secondes");
-                        setTimeout(function () {
-                            location.reload();
-                        }, 3000);
-                    } else {
-                        alertify.message(code_html);
-                    }
+            alertify.confirm('Confirmation', 'Voulez-vous supprimer cette utilisateur? ', function () {
+                if (id_utilisateur == 1) {
+                    alertify.error("Vous ne pouvez pas supprimer l'administrateur");
+                    return;
+                } else if (id_utilisateur == 2) {
+                    alertify.error("Vous ne pouvez pas supprimer le compte de l'utilisateur test, il s'agit d'une base d'un site de test");
+                    return;
                 }
-            });
-            alertify.confirm().close();
-        }, function () {
-            alertify.error("L'opération a été annulée");
-        }).set('labels', { ok: 'Oui', cancel: 'Non' });
-    }
+                $.ajax({
+                    url: 'controler.php',
+                    type: 'POST',
+                    data: 'action=supprimer_un_utilisateur&id_utilisateur=' + id_utilisateur,
+                    dataType: 'html',
+                    success: function (code_html, status) {
+                        nb = code_html.search(/Ok/i);
+                        if (nb !== -1) {
+                            alertify.success(code_html);
+                            alertify.success("Rechargement de la page dans 3 secondes");
+                            setTimeout(function () {
+                                location.reload();
+                            }, 3000);
+                        } else {
+                            alertify.message(code_html);
+                        }
+                    }
+                });
+                alertify.confirm().close();
+            }, function () {
+                alertify.error("L'opération a été annulée");
+            }).set('labels', { ok: 'Oui', cancel: 'Non' });
+        }
     </script>
     <table id="utilisateurs" class="display" style="width:100%">
         <thead>
