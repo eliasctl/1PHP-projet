@@ -4,8 +4,9 @@ require('config.php');
 require('nav.php');
 
 if (!empty($_GET['recherche'])) {
-    $liste_des_videos = recherche_liste_film($_GET['recherche']);
-    $recherche = $_GET['recherche'];
+    $recherche = htmlentities($_GET['recherche'], ENT_QUOTES, "UTF-8");
+    $liste_des_videos = recherche_liste_film($recherche);
+    
     if (empty($liste_des_videos)) {
         $recherche = "Aucun résultat pour la recherche : " . $recherche;
     }

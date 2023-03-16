@@ -5,7 +5,7 @@ doit_etre_connecte();
 require('nav.php');
 ?>
 
-<html lang="en">
+<html lang="fr">
 <script>
     function supprimer_un_film_du_panier(id_film, id_utilisateur) {
         alertify.confirm('Confirmation', 'Voulez-vous vraiment supprimer ce film de votre panier', function () {
@@ -18,9 +18,9 @@ require('nav.php');
                     nb = code_html.search(/Ok/i);
                     if (nb !== -1) {
                         alertify.success(code_html);
+                        location.reload();
                     } else {
                         alertify.message(code_html);
-                        location.reload();
                     }
                 }
             });
@@ -40,7 +40,10 @@ require('nav.php');
                     nb = code_html.search(/Ok/i);
                     if (nb !== -1) {
                         alertify.success(code_html);
-                        location.reload();
+                        alertify.success("Vous allez être redirigé vers votre profil dans 3 secondes!");
+                        setTimeout(function () {
+                            window.location.href = "profile.php";
+                        }, 3000);
                     } else {
                         alertify.message(code_html);
                     }

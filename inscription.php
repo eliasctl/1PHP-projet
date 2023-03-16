@@ -133,7 +133,7 @@ require('nav.php');
                     echo "Le Pseudo doit être renseigné en lettres minuscules sans accents, sans caractères spéciaux.";
                 } elseif (strlen($Pseudo) < 3) {
                     echo "Le pseudo est trop court, il doit faire au moins 3 caractères.";
-                } elseif (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $Email)) {
+                } elseif (!filter_var($Email, FILTER_VALIDATE_EMAIL)) { // Les email c'est ça https://www.youtube.com/watch?v=xxX81WmXjPg !!!
                     echo "L'adresse email n'est pas valide.";
                 } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM utilisateurs WHERE email='" . $Email . "'")) == 1) {
                     echo "Cette email est déjà utilisé.";

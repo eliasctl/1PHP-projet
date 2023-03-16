@@ -9,7 +9,7 @@ $local_DB = false;
 if ($local_DB === true) {
     $conn = mysqli_connect('localhost', 'root', 'root', '1php-proj');
 } else {
-    $conn = mysqli_connect('eliascastel.ddns.net', 'pi', '@root123', '1php');
+    $conn = mysqli_connect('eliascastel.ddns.net', '1php', '1php-proj!45AH', '1php'); // merci de ne pas se connecter a la base de donnees
 }
 
 // Verifier la connexion
