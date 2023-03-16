@@ -88,13 +88,6 @@ if (isset($_GET['id_utilisateur'])) {
             padding: 10px;
         }
 
-        /* td {
-            background-color: var(--secondaire);
-            color: white;
-            font-size: 20px;
-            padding: 10px;
-        } */
-
         .achat-infos {
             background-color: var(--bordure);
             color: white;
@@ -148,6 +141,26 @@ if (isset($_GET['id_utilisateur'])) {
         .mdp:hover {
             background-color: red;
             color: white;
+        }
+
+        @media screen and (max-width: 500px) {
+            .pp {
+                font-size: 40px;
+            }
+
+            .main-box {
+                width: 95%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .achats {
+                width: 95%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
         }
     </style>
 </head>

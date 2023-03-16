@@ -26,6 +26,7 @@ doit_etre_admin();
     <script type="text/javascript">
         $(document).ready(function () {
             $('#films').DataTable({
+                scrollX: true,
                 "paging": false,
                 "info": false,
                 "language": {
