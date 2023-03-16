@@ -35,27 +35,6 @@ doit_etre_admin();
                 }
             });
         });
-        function modifierArgent(id, argent) {
-            alertify.prompt('Chagement de mot de passe', 'Entrez votre nouveau mot de passe', argent, function (evt, value) {
-                $.ajax({
-                    url: 'backofice_ajout_argent.php',
-                    type: 'POST',
-                    data: 'codedeconnexion=rasppi25ukl€eliwill20322jkhqz!84865&id=' + id + '&somme=' + value,
-                    dataType: 'html',
-                    success: function (code_html, status) {
-                        nb = code_html.search(/Ok/i);
-                        if (nb !== -1) {
-                            alertify.success(code_html);
-                        } else {
-                            alertify.message(code_html);
-                        }
-                    }
-                });
-                alertify.confirm().close();
-            }, function () {
-                alertify.error("L'opération a été annulée");
-            }).set('labels', { ok: 'Valider', cancel: 'Annuler' });
-        }
     </script>
     <table id="films" class="display" style="width:100%">
         <thead>
