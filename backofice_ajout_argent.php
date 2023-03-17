@@ -19,7 +19,7 @@ if (empty($_POST['somme'])) {
 }
 $id=$_POST['id'];
 $somme=$_POST['somme'];
-$conn = mysqli_connect('eliascastel.ddns.net', '1php', '1php-proj!45AH', '1php');
+$conn = mysqli_connect('localhost', 'root', 'root', '1php-proj');
 if ($conn == false) {
     die("ERREUR : Impossible de se connecter. " . mysqli_connect_error());
 }
