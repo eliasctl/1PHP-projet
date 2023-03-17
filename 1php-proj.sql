@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `1php`
+-- Base de données : `1php-proj`
 --
 
 -- --------------------------------------------------------
@@ -45,17 +45,7 @@ CREATE TABLE `utilisateurs` (
 INSERT INTO `utilisateurs` (`id`, `pseudo`, `email`, `type`, `code`, `panier`, `achats`, `argent`) VALUES
 (1, 'admin', 'admin@admin.admin', 'admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '', '6,3,26,25,24,15,15,12,13,2,4,1,5,', 150),
 (2, 'user', 'user@user.user', 'user', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', ',6,8', '10,16,5,', 150),
-(13, 'user1', 'user1@user1.com', 'user', '0a041b9462caa4a31bac3567e0b6e6fd9100787db2ab433d96f6d178cabfce90', NULL, NULL, 150),
-(14, 'paul', 'paulmrsch@gmail.com', 'user', '03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4', '0', NULL, 150),
-(15, 'test', 'elias.moussa@gmail.com', 'user', '5d10c01463215fd57052e85e7fe46fd931a7282d08f9c7553cd79d472992c092', '', NULL, 0),
-(17, 'wiwi', 'wiwi@wiwi.com', 'user', 'ecb0448587640c821ce97fde3fcf7fbd40e8511e53419cf872f7e6f90c5ed7ed', NULL, NULL, 666),
-(18, 'moppe', 'mm@gmail.fr', 'user', 'e0ce132e2d10b35ce80e71c645b230e31ed9dd761289f95bbd14016af3601ad8', NULL, NULL, 150),
-(19, 'manip', 'mamop@yop.fr', 'user', '39827a0df8b6765361ebccb3f42ba1841c518c02c99e0c9950865ca197520f5f', NULL, NULL, 150),
-(20, 'php', 'php@yop.fr', 'user', 'ad769bd0aa11e18cf2096852fe1f72960a6b5b12ca00fb0bbac94158bbcb8978', NULL, NULL, 150),
-(21, 'rip', 'rip@op.fr', 'user', '168057cf3afe5223d01c752595d5a39175720b90fd16d373081d4dff08120c27', ',3', NULL, 150),
-(22, '123456789', '123456789@321456789.com', 'user', '6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', ',11', NULL, 300),
-(23, 'samogst', 'pajanipadeatchy.samuel@gmail.com', 'user', 'cf528e5311ed758a49dc0fc22c199f54988867d4e1ff4c8437bd5616c992f85a', '', '9,22,6,15,10,25,8,4,3,18,14,21,', 7629),
-(24, 'ksynsi', 'aksel.younsi@supinfo.com', 'user', '15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225', '5,6,7,13', '3,', 6964);
+(3, 'user1', 'user1@user1.com', 'user', '0a041b9462caa4a31bac3567e0b6e6fd9100787db2ab433d96f6d178cabfce90', NULL, NULL, 150),
 
 -- --------------------------------------------------------
 
