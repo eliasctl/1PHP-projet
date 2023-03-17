@@ -6,7 +6,7 @@ Documentation
 
 BenG1 SupInfo 2022-2023
 Vendredi 17 Mars 2023
-Movies database & co
+Movies database & co
 
 Connexion
 Vous pouvez vous créer un utilisateur ou utiliser les différents utilisateurs que nous vous avons mis à disposition.
